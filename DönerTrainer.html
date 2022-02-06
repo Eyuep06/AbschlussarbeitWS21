@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Döner Trainer</title>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas height="600px" width="800px" class="hidden"></canvas>
+    <header>
+       
+    </header>
+    <form>
+        <h1>Döner Trainer</h1>
+        <fieldset>
+            <legend>Anzahl der Mitarbeiter</legend>
+            <input type="number" name="mitarbeierzahl" step="1" min="4" max="7" value="4" />
+        </fieldset>
+        <fieldset>
+            <legend>Intervall neuer Kunde</legend>
+            <input type="number" name="kundenIntervall" step="15" min="15" max="60" value="15" />
+        </fieldset>
+        <fieldset>
+            <legend>Kapazität Rohmaterial</legend> 
+            <input type="range" name="kapazitätRohmaterial" min="0" max="100" step="25" value="0" />
+        </fieldset>
+        <fieldset>
+            <legend>Kapazität Theke</legend>
+            <input type="range" name="kapazitätTheke" min="0" max="100" step="25" value="0" />
+        </fieldset>
+        <fieldset>
+        <legend>Energie der Mitarbeiter</legend>
+        <input type="radio" name="Energie" value="stark" id="stark" checked />
+        <label for="stark">Stark</label>
+        <input type="radio" name="Energie" value="mittel" id="mittel" />
+        <label for="mittel">Mittel</label>
+        <input type="radio" name="Energie" value="schwach" id="schwach" />
+        <label for="schwach">Schwach</label>
+        </fieldset>
+        <button class="startButton">Start</button>
+
+
+    </form>
+
+</body>
+
+</html>
