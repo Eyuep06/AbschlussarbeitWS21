@@ -2,25 +2,25 @@
     display: none;
 }
 
-body{
+body {
     background-image: url(assets/bg.png);
 }
 
-form{
+form {
     margin: auto;
     width: fit-content;
     font-family: Arial, Helvetica, sans-serif;
     background-color: white;
 }
 
-h1{
+h1 {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     background-color: none;
 }
 
-.startButton{
-    background-color: #f44336; 
+.startButton {
+    background-color: #f44336;
     color: white;
     padding: 16px 32px;
     text-align: center;
@@ -41,4 +41,45 @@ h1{
 .startButton:hover {
     background-color: white;
     color: black;
+}
+
+#button0, #button1, #button2, #button3, #button4 {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    
+}
+
+#button0{
+    left: -505px;
+    bottom: 103px
+}
+
+#button1{
+    left: -505px;
+    bottom: 103px;
+}
+
+#button2{
+    left: -505px;
+    bottom: 103px;
+}
+
+#button3{
+    left: -505px;
+    bottom: 103px;
+}
+
+#button4{
+    left: 700px;
+    bottom: 204px;
+}
+
+img{
+    position: relative;
+    left: -100px;
+    bottom: 204px;
 }
