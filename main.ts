@@ -1,7 +1,8 @@
 namespace Abschlussarbeit {
 
     let formData: FormData;
-    let employees: Employee[]= [];
+    let employees: Employee[] = [];
+    let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350)]
     export enum MOOD {
         HAPPY,
         MEH,
@@ -217,18 +218,18 @@ namespace Abschlussarbeit {
         energyMA = Number(formData.get("Energie"));
 
 
-        for (let i: number = 0; i < nEmployees; i++){
-            let employee: Employee = new Employee(new Vector(50,50), energyMA)
+        for (let i: number = 0; i < nEmployees; i++) {
+            let employee: Employee = new Employee(taskPositions[i], energyMA)
             employees.push(employee);
         }
 
-        for (let i: number = 0; i<employees.length; i++){
+        for (let i: number = 0; i < employees.length; i++) {
             employees[i].draw;
         }
 
         console.log(employees);
-        
-        
+
+
     }
 
 

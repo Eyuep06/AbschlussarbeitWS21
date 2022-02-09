@@ -3,6 +3,7 @@ var Abschlussarbeit;
 (function (Abschlussarbeit) {
     let formData;
     let employees = [];
+    let taskPositions = [new Abschlussarbeit.Vector(50, 250), new Abschlussarbeit.Vector(200, 250), new Abschlussarbeit.Vector(450, 250), new Abschlussarbeit.Vector(550, 350)];
     let MOOD;
     (function (MOOD) {
         MOOD[MOOD["HAPPY"] = 0] = "HAPPY";
@@ -168,7 +169,7 @@ var Abschlussarbeit;
         let energyMA;
         energyMA = Number(formData.get("Energie"));
         for (let i = 0; i < nEmployees; i++) {
-            let employee = new Abschlussarbeit.Employee(new Abschlussarbeit.Vector(50, 50), energyMA);
+            let employee = new Abschlussarbeit.Employee(taskPositions[i], energyMA);
             employees.push(employee);
         }
         for (let i = 0; i < employees.length; i++) {

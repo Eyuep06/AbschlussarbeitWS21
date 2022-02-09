@@ -6,7 +6,8 @@ var Abschlussarbeit;
             super(_position);
             this.position = _position;
             this.energy = _energy;
-            super.draw();
+            super.draw(_position);
+            this.position = (_position);
         }
         setTask() {
         }
