@@ -12,6 +12,7 @@ var Abschlussarbeit;
         draw() {
             Abschlussarbeit.crc2.fillStyle = this.color;
             Abschlussarbeit.crc2.fillRect(300, 400, 100, this.amountBar);
+            Abschlussarbeit.crc2.fillRect(300, 100, 100, this.amountStock);
         }
     }
     Abschlussarbeit.Cabbage = Cabbage;

@@ -2,6 +2,7 @@
 var Abschlussarbeit;
 (function (Abschlussarbeit) {
     let formData;
+    let employees = [];
     let MOOD;
     (function (MOOD) {
         MOOD[MOOD["HAPPY"] = 0] = "HAPPY";
@@ -113,7 +114,7 @@ var Abschlussarbeit;
         intervallCustomer = Number(formData.get("kundenIntervall"));
         capIngredients = Number(formData.get("kapazitätTheke"));
         capStock = Number(formData.get("kapazitätRohmaterial"));
-        energyMA = String(formData.get("Energie"));
+        energyMA = Number(formData.get("Energie"));
         corn = capIngredients;
         lettuce = capIngredients;
         onion = capIngredients;
@@ -160,6 +161,20 @@ var Abschlussarbeit;
         let lahmacunImg = document.createElement("img");
         lahmacunImg.src = "assets/lahmacun.png";
         document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
+        createEmployees(anzahlMA);
+    }
+    // WENN DIESE FUNKTION AUSGEFÜHRT WIRD STOPPT DAS PROGRAMM
+    function createEmployees(nEmployees) {
+        let energyMA;
+        energyMA = Number(formData.get("Energie"));
+        for (let i = 0; i < nEmployees; i++) {
+            let employee = new Abschlussarbeit.Employee(new Abschlussarbeit.Vector(50, 50), energyMA);
+            employees.push(employee);
+        }
+        for (let i = 0; i < employees.length; i++) {
+            employees[i].draw;
+        }
+        console.log("ich werde ausgeführt ya khelb");
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));
 //# sourceMappingURL=main.js.map

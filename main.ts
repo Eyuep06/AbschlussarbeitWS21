@@ -1,6 +1,7 @@
 namespace Abschlussarbeit {
 
     let formData: FormData;
+    let employees: Employee[]= [];
     export enum MOOD {
         HAPPY,
         MEH,
@@ -125,7 +126,7 @@ namespace Abschlussarbeit {
         let intervallCustomer: number;
         let capIngredients: number;
         let capStock: number;
-        let energyMA: string;
+        let energyMA: number;
 
         let corn: number;
         let lettuce: number;
@@ -138,7 +139,7 @@ namespace Abschlussarbeit {
         intervallCustomer = Number(formData.get("kundenIntervall"));
         capIngredients = Number(formData.get("kapazitätTheke"));
         capStock = Number(formData.get("kapazitätRohmaterial"));
-        energyMA = String(formData.get("Energie"));
+        energyMA = Number(formData.get("Energie"));
 
         corn = capIngredients;
         lettuce = capIngredients;
@@ -163,8 +164,8 @@ namespace Abschlussarbeit {
         let onionBar: Onion = new Onion(capIngredients, capStock, onion)
         onionBar.draw();
 
-         //create Buttons for Ingredients
-         for (let i: number = 0; i < 5; i++) {
+        //create Buttons for Ingredients
+        for (let i: number = 0; i < 5; i++) {
             let button = document.createElement("button");
             document.getElementById("canvasDiv")?.appendChild(button);
             button.id = "button" + i;
@@ -186,11 +187,11 @@ namespace Abschlussarbeit {
         let onionBtn: HTMLButtonElement;
         onionBtn = <HTMLButtonElement>document.getElementById("button4");
 
-        cabbageBtn.addEventListener("pointerup", function() {deleteIngredient(cabbage)});
-        lettuceBtn.addEventListener("pointerup", function() {deleteIngredient(lettuce)});
-        cornBtn.addEventListener("pointerup", function() {deleteIngredient(corn)});
-        tomatoBtn.addEventListener("pointerup", function() {deleteIngredient(tomato)});
-        onionBtn.addEventListener("pointerup", function() {deleteIngredient(onion)});
+        cabbageBtn.addEventListener("pointerup", function () { deleteIngredient(cabbage) });
+        lettuceBtn.addEventListener("pointerup", function () { deleteIngredient(lettuce) });
+        cornBtn.addEventListener("pointerup", function () { deleteIngredient(corn) });
+        tomatoBtn.addEventListener("pointerup", function () { deleteIngredient(tomato) });
+        onionBtn.addEventListener("pointerup", function () { deleteIngredient(onion) });
 
 
         let doenerImg = document.createElement("img");
@@ -204,12 +205,30 @@ namespace Abschlussarbeit {
         let lahmacunImg = document.createElement("img");
         lahmacunImg.src = "assets/lahmacun.png"
         document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
-        
-        
+
+        createEmployees(anzahlMA);
 
     }
+// WENN DIESE FUNKTION AUSGEFÜHRT WIRD STOPPT DAS PROGRAMM
+    function createEmployees(nEmployees: number): void {
+        let energyMA: number;
+        energyMA = Number(formData.get("Energie"));
 
-    
+
+        for (let i: number = 0; i < nEmployees; i++){
+            let employee: Employee = new Employee(new Vector(50,50), energyMA)
+            employees.push(employee);
+        }
+
+        for (let i: number = 0; i<employees.length; i++){
+            employees[i].draw;
+        }
+
+        console.log("ich werde ausgeführt ya khelb");
+        
+    }
+
+
 
 
 }

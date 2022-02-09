@@ -2,9 +2,11 @@
 var Abschlussarbeit;
 (function (Abschlussarbeit) {
     class Employee extends Abschlussarbeit.Human {
-        constructor(_position) {
+        constructor(_position, _energy) {
             super(_position);
             this.position = _position;
+            this.energy = _energy;
+            super.draw();
         }
         setTask() {
         }
