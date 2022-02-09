@@ -14,9 +14,7 @@ var Abschlussarbeit;
         doTask() {
         }
         updateMood() {
-            do {
-                this.energy = this.energy - 1;
-            } while (this.energy <= 100);
+            this.energy = this.energy - 1;
             console.log(this.energy);
             if (this.energy >= 67) {
                 this.mood = Abschlussarbeit.MOOD.HAPPY;

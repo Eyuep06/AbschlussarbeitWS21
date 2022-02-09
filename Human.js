@@ -7,7 +7,7 @@ var Abschlussarbeit;
         move(_timeslice) {
         }
         draw(_position) {
-            //smiley
+            //head
             Abschlussarbeit.crc2.fillStyle = 'yellow';
             Abschlussarbeit.crc2.strokeStyle = 'black';
             Abschlussarbeit.crc2.lineWidth = 2;
@@ -29,12 +29,42 @@ var Abschlussarbeit;
             Abschlussarbeit.crc2.stroke();
             Abschlussarbeit.crc2.closePath();
             //mouth
-            Abschlussarbeit.crc2.strokeStyle = 'black';
-            Abschlussarbeit.crc2.lineWidth = 2;
-            Abschlussarbeit.crc2.beginPath();
-            Abschlussarbeit.crc2.arc(_position.x, _position.y, 30, 0, -1 * Math.PI);
-            Abschlussarbeit.crc2.stroke();
-            Abschlussarbeit.crc2.closePath();
+            switch (this.mood) {
+                case 0:
+                    console.log("hello there");
+                    Abschlussarbeit.crc2.strokeStyle = 'black';
+                    Abschlussarbeit.crc2.lineWidth = 2;
+                    Abschlussarbeit.crc2.beginPath();
+                    Abschlussarbeit.crc2.arc(_position.x, _position.y, 30, 0, -1 * Math.PI);
+                    Abschlussarbeit.crc2.stroke();
+                    Abschlussarbeit.crc2.closePath();
+                    break;
+                case 1:
+                    Abschlussarbeit.crc2.strokeStyle = 'black';
+                    Abschlussarbeit.crc2.lineWidth = 2;
+                    Abschlussarbeit.crc2.beginPath();
+                    Abschlussarbeit.crc2.moveTo(_position.x - 10, _position.y);
+                    Abschlussarbeit.crc2.lineTo(_position.x + 10, _position.y);
+                    Abschlussarbeit.crc2.stroke();
+                    Abschlussarbeit.crc2.closePath();
+                    break;
+                case 2:
+                    Abschlussarbeit.crc2.strokeStyle = 'black';
+                    Abschlussarbeit.crc2.lineWidth = 2;
+                    Abschlussarbeit.crc2.beginPath();
+                    Abschlussarbeit.crc2.arc(_position.x, _position.y, 30, 0, -1 * Math.PI, true);
+                    Abschlussarbeit.crc2.stroke();
+                    Abschlussarbeit.crc2.closePath();
+                    break;
+                case 3:
+                    Abschlussarbeit.crc2.strokeStyle = 'black';
+                    Abschlussarbeit.crc2.lineWidth = 2;
+                    Abschlussarbeit.crc2.beginPath();
+                    Abschlussarbeit.crc2.moveTo(_position.x, _position.y);
+                    Abschlussarbeit.crc2.bezierCurveTo(90, 150, 180, 10, 290, 90);
+                    Abschlussarbeit.crc2.stroke();
+                    break;
+            }
         }
     }
     Abschlussarbeit.Human = Human;

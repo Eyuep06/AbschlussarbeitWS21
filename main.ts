@@ -29,6 +29,7 @@ namespace Abschlussarbeit {
         startButton.addEventListener("pointerup", startGame);
 
         drawRestaurant();
+        window.setInterval(createEmployees, 1000);
 
 
 
@@ -227,7 +228,7 @@ namespace Abschlussarbeit {
 
         for (let i: number = 0; i < employees.length; i++) {
             employees[i].draw;
-            employees[i].updateMood;
+            employees[i].updateMood();
         }
 
 

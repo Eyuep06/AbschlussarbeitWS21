@@ -25,6 +25,7 @@ var Abschlussarbeit;
         let startButton = document.querySelector(".startButton");
         startButton.addEventListener("pointerup", startGame);
         drawRestaurant();
+        window.setInterval(createEmployees, 1000);
     }
     function startGame() {
         //formData = new FormData(document.forms[0]);
@@ -174,7 +175,7 @@ var Abschlussarbeit;
         }
         for (let i = 0; i < employees.length; i++) {
             employees[i].draw;
-            employees[i].updateMood;
+            employees[i].updateMood();
         }
         // console.log();
     }

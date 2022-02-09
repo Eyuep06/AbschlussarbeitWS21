@@ -25,8 +25,8 @@ namespace Abschlussarbeit {
 
         updateMood(): void {
 
-            do { this.energy = this.energy - 1 }
-            while (this.energy <= 100);
+            this.energy = this.energy - 1
+        
             console.log(this.energy);
 
 
