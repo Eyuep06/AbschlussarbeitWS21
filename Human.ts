@@ -3,7 +3,7 @@ namespace Abschlussarbeit {
         velocity: Vector;
         position: Vector;
         mood: MOOD;
-        energy: number;
+    
 
         constructor(_position: Vector) {
 
@@ -14,6 +14,7 @@ namespace Abschlussarbeit {
         }
 
         draw(_position: Vector): void {
+            
             
             //smiley
             crc2.fillStyle = 'yellow';
@@ -49,14 +50,11 @@ namespace Abschlussarbeit {
 
         }
 
-        updateMood(): void {
-
-            do { this.energy = this.energy - 1 }
-            while (this.energy <= 100);
+        
+           
 
 
         }
 
     }
 
-}

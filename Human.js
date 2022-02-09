@@ -36,11 +36,6 @@ var Abschlussarbeit;
             Abschlussarbeit.crc2.stroke();
             Abschlussarbeit.crc2.closePath();
         }
-        updateMood() {
-            do {
-                this.energy = this.energy - 1;
-            } while (this.energy <= 100);
-        }
     }
     Abschlussarbeit.Human = Human;
 })(Abschlussarbeit || (Abschlussarbeit = {}));

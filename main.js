@@ -174,8 +174,9 @@ var Abschlussarbeit;
         }
         for (let i = 0; i < employees.length; i++) {
             employees[i].draw;
+            employees[i].updateMood;
         }
-        console.log(employees);
+        // console.log();
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));
 //# sourceMappingURL=main.js.map

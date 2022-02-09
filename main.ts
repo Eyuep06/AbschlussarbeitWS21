@@ -30,6 +30,8 @@ namespace Abschlussarbeit {
 
         drawRestaurant();
 
+
+
     }
 
 
@@ -225,12 +227,17 @@ namespace Abschlussarbeit {
 
         for (let i: number = 0; i < employees.length; i++) {
             employees[i].draw;
+            employees[i].updateMood;
         }
 
-        console.log(employees);
+
+
+        // console.log();
 
 
     }
+
+
 
 
 
