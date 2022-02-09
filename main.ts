@@ -209,8 +209,10 @@ namespace Abschlussarbeit {
         createEmployees(anzahlMA);
 
     }
-// WENN DIESE FUNKTION AUSGEFÜHRT WIRD STOPPT DAS PROGRAMM
+
     function createEmployees(nEmployees: number): void {
+        formData = new FormData(document.forms[0]);
+
         let energyMA: number;
         energyMA = Number(formData.get("Energie"));
 
@@ -224,7 +226,8 @@ namespace Abschlussarbeit {
             employees[i].draw;
         }
 
-        console.log("ich werde ausgeführt ya khelb");
+        console.log(employees);
+        
         
     }
 

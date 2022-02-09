@@ -163,8 +163,8 @@ var Abschlussarbeit;
         document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
         createEmployees(anzahlMA);
     }
-    // WENN DIESE FUNKTION AUSGEFÜHRT WIRD STOPPT DAS PROGRAMM
     function createEmployees(nEmployees) {
+        formData = new FormData(document.forms[0]);
         let energyMA;
         energyMA = Number(formData.get("Energie"));
         for (let i = 0; i < nEmployees; i++) {
@@ -174,7 +174,7 @@ var Abschlussarbeit;
         for (let i = 0; i < employees.length; i++) {
             employees[i].draw;
         }
-        console.log("ich werde ausgeführt ya khelb");
+        console.log(employees);
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));
 //# sourceMappingURL=main.js.map
