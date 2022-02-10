@@ -22,7 +22,7 @@ var Abschlussarbeit;
             if (this.energy < 67 && this.energy > 33) {
                 this.mood = Abschlussarbeit.MOOD.MEH;
             }
-            if (this.energy < 33 && this.energy > 0) {
+            if (this.energy <= 33 && this.energy > 0) {
                 this.mood = Abschlussarbeit.MOOD.SAD;
             }
             if (this.energy == 0) {

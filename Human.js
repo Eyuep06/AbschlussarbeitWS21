@@ -30,7 +30,7 @@ var Abschlussarbeit;
             Abschlussarbeit.crc2.closePath();
             //mouth
             switch (this.mood) {
-                case 0:
+                case Abschlussarbeit.MOOD.HAPPY:
                     console.log("hello there");
                     Abschlussarbeit.crc2.strokeStyle = 'black';
                     Abschlussarbeit.crc2.lineWidth = 2;
@@ -39,7 +39,7 @@ var Abschlussarbeit;
                     Abschlussarbeit.crc2.stroke();
                     Abschlussarbeit.crc2.closePath();
                     break;
-                case 1:
+                case Abschlussarbeit.MOOD.MEH:
                     Abschlussarbeit.crc2.strokeStyle = 'black';
                     Abschlussarbeit.crc2.lineWidth = 2;
                     Abschlussarbeit.crc2.beginPath();
@@ -48,7 +48,7 @@ var Abschlussarbeit;
                     Abschlussarbeit.crc2.stroke();
                     Abschlussarbeit.crc2.closePath();
                     break;
-                case 2:
+                case Abschlussarbeit.MOOD.SAD:
                     Abschlussarbeit.crc2.strokeStyle = 'black';
                     Abschlussarbeit.crc2.lineWidth = 2;
                     Abschlussarbeit.crc2.beginPath();
@@ -56,7 +56,7 @@ var Abschlussarbeit;
                     Abschlussarbeit.crc2.stroke();
                     Abschlussarbeit.crc2.closePath();
                     break;
-                case 3:
+                case Abschlussarbeit.MOOD.KO:
                     Abschlussarbeit.crc2.strokeStyle = 'black';
                     Abschlussarbeit.crc2.lineWidth = 2;
                     Abschlussarbeit.crc2.beginPath();

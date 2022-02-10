@@ -38,7 +38,7 @@ namespace Abschlussarbeit {
                 this.mood = MOOD.MEH
             }
 
-            if (this.energy < 33 && this.energy > 0) {
+            if (this.energy <= 33 && this.energy > 0) {
                 this.mood = MOOD.SAD
             }
 

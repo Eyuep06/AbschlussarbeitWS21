@@ -42,7 +42,7 @@ namespace Abschlussarbeit {
 
             //mouth
             switch (this.mood) {
-                case 0:
+                case MOOD.HAPPY:
                     console.log("hello there");
                     crc2.strokeStyle = 'black';
                     crc2.lineWidth = 2;
@@ -53,7 +53,7 @@ namespace Abschlussarbeit {
 
                     break;
 
-                case 1:
+                case MOOD.MEH:
                     crc2.strokeStyle = 'black';
                     crc2.lineWidth = 2;
                     crc2.beginPath();
@@ -64,7 +64,7 @@ namespace Abschlussarbeit {
 
                     break;
 
-                case 2:
+                case MOOD.SAD:
                     crc2.strokeStyle = 'black';
                     crc2.lineWidth = 2;
                     crc2.beginPath();
@@ -74,7 +74,7 @@ namespace Abschlussarbeit {
 
                     break;
 
-                case 3:
+                case MOOD.KO:
                     crc2.strokeStyle = 'black';
                     crc2.lineWidth = 2;
                     crc2.beginPath();
