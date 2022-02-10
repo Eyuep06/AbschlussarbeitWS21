@@ -43,7 +43,6 @@ namespace Abschlussarbeit {
             //mouth
             switch (this.mood) {
                 case MOOD.HAPPY:
-                    console.log("hello there");
                     crc2.strokeStyle = 'black';
                     crc2.lineWidth = 2;
                     crc2.beginPath();
@@ -57,8 +56,8 @@ namespace Abschlussarbeit {
                     crc2.strokeStyle = 'black';
                     crc2.lineWidth = 2;
                     crc2.beginPath();
-                    crc2.moveTo(_position.x - 10, _position.y);
-                    crc2.lineTo(_position.x + 10, _position.y)
+                    crc2.moveTo(_position.x - 10, _position.y + 15);
+                    crc2.lineTo(_position.x + 10, _position.y +15)
                     crc2.stroke();
                     crc2.closePath();
 
@@ -68,7 +67,7 @@ namespace Abschlussarbeit {
                     crc2.strokeStyle = 'black';
                     crc2.lineWidth = 2;
                     crc2.beginPath();
-                    crc2.arc(_position.x, _position.y, 30, 0, -1 * Math.PI, true);
+                    crc2.arc(_position.x, _position.y +15, 30, 0, -1 * Math.PI, true);
                     crc2.stroke();
                     crc2.closePath();
 
@@ -78,9 +77,12 @@ namespace Abschlussarbeit {
                     crc2.strokeStyle = 'black';
                     crc2.lineWidth = 2;
                     crc2.beginPath();
-                    crc2.moveTo(_position.x, _position.y);
-                    crc2.bezierCurveTo(90, 150, 180, 10, 290, 90);
+                    crc2.moveTo(_position.x -10, _position.y+20);
+                    crc2.lineTo(_position.x +10, _position.y )
+                    crc2.moveTo(_position.x + 10, _position.y + 20 )
+                    crc2.lineTo(_position.x - 10, _position.y)
                     crc2.stroke();
+                    crc2.closePath();
 
                     break;
 

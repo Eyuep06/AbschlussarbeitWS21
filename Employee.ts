@@ -27,7 +27,6 @@ namespace Abschlussarbeit {
 
             this.energy = this.energy - 1
         
-            console.log(this.energy);
 
 
             if (this.energy >= 67) {
@@ -46,7 +45,6 @@ namespace Abschlussarbeit {
                this.mood = MOOD.KO
             }
 
-            console.log(this.mood);
             
 
 

@@ -31,7 +31,6 @@ var Abschlussarbeit;
             //mouth
             switch (this.mood) {
                 case Abschlussarbeit.MOOD.HAPPY:
-                    console.log("hello there");
                     Abschlussarbeit.crc2.strokeStyle = 'black';
                     Abschlussarbeit.crc2.lineWidth = 2;
                     Abschlussarbeit.crc2.beginPath();
@@ -43,8 +42,8 @@ var Abschlussarbeit;
                     Abschlussarbeit.crc2.strokeStyle = 'black';
                     Abschlussarbeit.crc2.lineWidth = 2;
                     Abschlussarbeit.crc2.beginPath();
-                    Abschlussarbeit.crc2.moveTo(_position.x - 10, _position.y);
-                    Abschlussarbeit.crc2.lineTo(_position.x + 10, _position.y);
+                    Abschlussarbeit.crc2.moveTo(_position.x - 10, _position.y + 15);
+                    Abschlussarbeit.crc2.lineTo(_position.x + 10, _position.y + 15);
                     Abschlussarbeit.crc2.stroke();
                     Abschlussarbeit.crc2.closePath();
                     break;
@@ -52,7 +51,7 @@ var Abschlussarbeit;
                     Abschlussarbeit.crc2.strokeStyle = 'black';
                     Abschlussarbeit.crc2.lineWidth = 2;
                     Abschlussarbeit.crc2.beginPath();
-                    Abschlussarbeit.crc2.arc(_position.x, _position.y, 30, 0, -1 * Math.PI, true);
+                    Abschlussarbeit.crc2.arc(_position.x, _position.y + 15, 30, 0, -1 * Math.PI, true);
                     Abschlussarbeit.crc2.stroke();
                     Abschlussarbeit.crc2.closePath();
                     break;
@@ -60,9 +59,12 @@ var Abschlussarbeit;
                     Abschlussarbeit.crc2.strokeStyle = 'black';
                     Abschlussarbeit.crc2.lineWidth = 2;
                     Abschlussarbeit.crc2.beginPath();
-                    Abschlussarbeit.crc2.moveTo(_position.x, _position.y);
-                    Abschlussarbeit.crc2.bezierCurveTo(90, 150, 180, 10, 290, 90);
+                    Abschlussarbeit.crc2.moveTo(_position.x - 10, _position.y + 20);
+                    Abschlussarbeit.crc2.lineTo(_position.x + 10, _position.y);
+                    Abschlussarbeit.crc2.moveTo(_position.x + 10, _position.y + 20);
+                    Abschlussarbeit.crc2.lineTo(_position.x - 10, _position.y);
                     Abschlussarbeit.crc2.stroke();
+                    Abschlussarbeit.crc2.closePath();
                     break;
             }
         }

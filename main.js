@@ -25,7 +25,7 @@ var Abschlussarbeit;
         let startButton = document.querySelector(".startButton");
         startButton.addEventListener("pointerup", startGame);
         drawRestaurant();
-        window.setInterval(createEmployees, 1000);
+        window.setInterval(update, 1000);
     }
     function startGame() {
         //formData = new FormData(document.forms[0]);
@@ -173,11 +173,13 @@ var Abschlussarbeit;
             let employee = new Abschlussarbeit.Employee(taskPositions[i], energyMA);
             employees.push(employee);
         }
+        // console.log();
+    }
+    function update() {
         for (let i = 0; i < employees.length; i++) {
-            employees[i].draw;
+            employees[i].draw(taskPositions[i]);
             employees[i].updateMood();
         }
-        // console.log();
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));
 //# sourceMappingURL=main.js.map

@@ -15,7 +15,6 @@ var Abschlussarbeit;
         }
         updateMood() {
             this.energy = this.energy - 1;
-            console.log(this.energy);
             if (this.energy >= 67) {
                 this.mood = Abschlussarbeit.MOOD.HAPPY;
             }
@@ -28,7 +27,6 @@ var Abschlussarbeit;
             if (this.energy == 0) {
                 this.mood = Abschlussarbeit.MOOD.KO;
             }
-            console.log(this.mood);
         }
     }
     Abschlussarbeit.Employee = Employee;

@@ -3,6 +3,7 @@ namespace Abschlussarbeit {
     let formData: FormData;
     let employees: Employee[] = [];
     let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350)]
+    
     export enum MOOD {
         HAPPY,
         MEH,
@@ -29,10 +30,7 @@ namespace Abschlussarbeit {
         startButton.addEventListener("pointerup", startGame);
 
         drawRestaurant();
-        window.setInterval(createEmployees, 1000);
-
-
-
+        window.setInterval(update, 1000);
     }
 
 
@@ -45,10 +43,6 @@ namespace Abschlussarbeit {
         body.removeChild(form);
         let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
         canvas.classList.remove("hidden");
-
-
-
-
 
     }
 
@@ -114,12 +108,12 @@ namespace Abschlussarbeit {
         crc2.lineTo(800, 500);
 
         crc2.stroke();
-
     }
 
 
     function deleteIngredient(_clickedIngredient: number): void {
         _clickedIngredient = _clickedIngredient - 25;
+
         console.log(_clickedIngredient);
     }
 
@@ -168,12 +162,13 @@ namespace Abschlussarbeit {
         let onionBar: Onion = new Onion(capIngredients, capStock, onion)
         onionBar.draw();
 
+
+
         //create Buttons for Ingredients
         for (let i: number = 0; i < 5; i++) {
             let button = document.createElement("button");
             document.getElementById("canvasDiv")?.appendChild(button);
             button.id = "button" + i;
-
         }
 
         let cabbageBtn: HTMLButtonElement;
@@ -211,8 +206,8 @@ namespace Abschlussarbeit {
         document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
 
         createEmployees(anzahlMA);
-
     }
+
 
     function createEmployees(nEmployees: number): void {
         formData = new FormData(document.forms[0]);
@@ -226,21 +221,18 @@ namespace Abschlussarbeit {
             employees.push(employee);
         }
 
+        // console.log();
+    }
+
+
+    function update(): void {
         for (let i: number = 0; i < employees.length; i++) {
-            employees[i].draw;
+            employees[i].draw(taskPositions[i]);
             employees[i].updateMood();
         }
 
 
-
-        // console.log();
-
-
     }
-
-
-
-
 
 
 }
