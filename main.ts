@@ -2,8 +2,12 @@ namespace Abschlussarbeit {
 
     let formData: FormData;
     let employees: Employee[] = [];
-    let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350)]
-    
+    let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350)];
+    let tomatoBar: Tomato;
+    let cabbageBar: Cabbage;
+    let cornBar: Corn;
+    let lettuceBar: Lettuce;
+    let onionBar: Onion;
     export enum MOOD {
         HAPPY,
         MEH,
@@ -63,13 +67,13 @@ namespace Abschlussarbeit {
         crc2.moveTo(0, 100);
         crc2.lineTo(800, 100);
         crc2.font = "15px Arial";
-        crc2.fillStyle = "red"
+        crc2.fillStyle = "red";
         crc2.fillText("Gesamtzufriedenheit Kunden:", 10, 30);
         crc2.font = "15px Arial";
-        crc2.fillStyle = "red"
+        crc2.fillStyle = "red";
         crc2.fillText("Gesamtzufriedenheit Mitarbeiter:", 310, 30);
         crc2.font = "15px Arial";
-        crc2.fillStyle = "red"
+        crc2.fillStyle = "red";
         crc2.fillText("Verkaufte Gerichte:", 610, 30);
         //phone + prepare 
         crc2.moveTo(0, 200);
@@ -111,10 +115,13 @@ namespace Abschlussarbeit {
     }
 
 
-    function deleteIngredient(_clickedIngredient: number): void {
-        _clickedIngredient = _clickedIngredient - 25;
+    function deleteIngredient(): void {
+        cornBar.amountBar = cornBar.amountBar - 25;
+        cornBar.draw();
+        console.log(cornBar.amountBar);
 
-        console.log(_clickedIngredient);
+
+
     }
 
 
@@ -147,32 +154,32 @@ namespace Abschlussarbeit {
 
         // wenn auf den button bei einer Zutat gedrückt wird, soll zb corn = corn - 25
 
-        let tomatoBar: Tomato = new Tomato(capIngredients, capStock, tomato)
+        tomatoBar = new Tomato(capIngredients, capStock, tomato);
         tomatoBar.draw();
 
-        let cabbageBar: Cabbage = new Cabbage(capIngredients, capStock, cabbage)
+        cabbageBar = new Cabbage(capIngredients, capStock, cabbage);
         cabbageBar.draw();
 
-        let cornBar: Corn = new Corn(capIngredients, capStock, corn)
+        cornBar = new Corn(capIngredients, capStock, corn);
         cornBar.draw();
 
-        let lettuceBar: Lettuce = new Lettuce(capIngredients, capStock, lettuce)
+        lettuceBar = new Lettuce(capIngredients, capStock, lettuce);
         lettuceBar.draw();
 
-        let onionBar: Onion = new Onion(capIngredients, capStock, onion)
+        onionBar = new Onion(capIngredients, capStock, onion);
         onionBar.draw();
 
 
 
         //create Buttons for Ingredients
         for (let i: number = 0; i < 5; i++) {
-            let button = document.createElement("button");
+            let button: HTMLButtonElement = document.createElement("button");
             document.getElementById("canvasDiv")?.appendChild(button);
             button.id = "button" + i;
         }
 
         let cabbageBtn: HTMLButtonElement;
-        cabbageBtn = <HTMLButtonElement>document.getElementById("button0")
+        cabbageBtn = <HTMLButtonElement>document.getElementById("button0");
 
         let lettuceBtn: HTMLButtonElement;
         lettuceBtn = <HTMLButtonElement>document.getElementById("button1");
@@ -186,23 +193,23 @@ namespace Abschlussarbeit {
         let onionBtn: HTMLButtonElement;
         onionBtn = <HTMLButtonElement>document.getElementById("button4");
 
-        cabbageBtn.addEventListener("pointerup", function () { deleteIngredient(cabbage) });
-        lettuceBtn.addEventListener("pointerup", function () { deleteIngredient(lettuce) });
-        cornBtn.addEventListener("pointerup", function () { deleteIngredient(corn) });
-        tomatoBtn.addEventListener("pointerup", function () { deleteIngredient(tomato) });
-        onionBtn.addEventListener("pointerup", function () { deleteIngredient(onion) });
+        cabbageBtn.addEventListener("pointerup", function (): void { deleteIngredient(); });
+        lettuceBtn.addEventListener("pointerup", function (): void { deleteIngredient(); });
+        cornBtn.addEventListener("pointerup", function (): void { deleteIngredient(); });
+        tomatoBtn.addEventListener("pointerup", function (): void { deleteIngredient(); });
+        onionBtn.addEventListener("pointerup", function (): void { deleteIngredient(); });
 
 
-        let doenerImg = document.createElement("img");
+        let doenerImg: HTMLImageElement = document.createElement("img");
         doenerImg.src = "assets/doener.png";
         document.getElementById("canvasDiv")?.appendChild(doenerImg);
 
-        let yufkaImg = document.createElement("img");
-        yufkaImg.src = "assets/yufka.png"
+        let yufkaImg: HTMLImageElement = document.createElement("img");
+        yufkaImg.src = "assets/yufka.png";
         document.getElementById("canvasDiv")?.appendChild(yufkaImg);
 
-        let lahmacunImg = document.createElement("img");
-        lahmacunImg.src = "assets/lahmacun.png"
+        let lahmacunImg: HTMLImageElement = document.createElement("img");
+        lahmacunImg.src = "assets/lahmacun.png";
         document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
 
         createEmployees(anzahlMA);
@@ -217,7 +224,7 @@ namespace Abschlussarbeit {
 
 
         for (let i: number = 0; i < nEmployees; i++) {
-            let employee: Employee = new Employee(taskPositions[i], energyMA)
+            let employee: Employee = new Employee(taskPositions[i], energyMA);
             employees.push(employee);
         }
 

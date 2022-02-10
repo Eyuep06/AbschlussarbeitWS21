@@ -4,6 +4,11 @@ var Abschlussarbeit;
     let formData;
     let employees = [];
     let taskPositions = [new Abschlussarbeit.Vector(50, 250), new Abschlussarbeit.Vector(200, 250), new Abschlussarbeit.Vector(450, 250), new Abschlussarbeit.Vector(550, 350)];
+    let tomatoBar;
+    let cabbageBar;
+    let cornBar;
+    let lettuceBar;
+    let onionBar;
     let MOOD;
     (function (MOOD) {
         MOOD[MOOD["HAPPY"] = 0] = "HAPPY";
@@ -96,9 +101,10 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.lineTo(800, 500);
         Abschlussarbeit.crc2.stroke();
     }
-    function deleteIngredient(_clickedIngredient) {
-        _clickedIngredient = _clickedIngredient - 25;
-        console.log(_clickedIngredient);
+    function deleteIngredient() {
+        cornBar.amountBar = cornBar.amountBar - 25;
+        cornBar.draw();
+        console.log(cornBar.amountBar);
     }
     function getSettingData() {
         formData = new FormData(document.forms[0]);
@@ -123,15 +129,15 @@ var Abschlussarbeit;
         cabbage = capIngredients;
         tomato = capIngredients;
         // wenn auf den button bei einer Zutat gedrückt wird, soll zb corn = corn - 25
-        let tomatoBar = new Abschlussarbeit.Tomato(capIngredients, capStock, tomato);
+        tomatoBar = new Abschlussarbeit.Tomato(capIngredients, capStock, tomato);
         tomatoBar.draw();
-        let cabbageBar = new Abschlussarbeit.Cabbage(capIngredients, capStock, cabbage);
+        cabbageBar = new Abschlussarbeit.Cabbage(capIngredients, capStock, cabbage);
         cabbageBar.draw();
-        let cornBar = new Abschlussarbeit.Corn(capIngredients, capStock, corn);
+        cornBar = new Abschlussarbeit.Corn(capIngredients, capStock, corn);
         cornBar.draw();
-        let lettuceBar = new Abschlussarbeit.Lettuce(capIngredients, capStock, lettuce);
+        lettuceBar = new Abschlussarbeit.Lettuce(capIngredients, capStock, lettuce);
         lettuceBar.draw();
-        let onionBar = new Abschlussarbeit.Onion(capIngredients, capStock, onion);
+        onionBar = new Abschlussarbeit.Onion(capIngredients, capStock, onion);
         onionBar.draw();
         //create Buttons for Ingredients
         for (let i = 0; i < 5; i++) {
@@ -149,11 +155,11 @@ var Abschlussarbeit;
         tomatoBtn = document.getElementById("button3");
         let onionBtn;
         onionBtn = document.getElementById("button4");
-        cabbageBtn.addEventListener("pointerup", function () { deleteIngredient(cabbage); });
-        lettuceBtn.addEventListener("pointerup", function () { deleteIngredient(lettuce); });
-        cornBtn.addEventListener("pointerup", function () { deleteIngredient(corn); });
-        tomatoBtn.addEventListener("pointerup", function () { deleteIngredient(tomato); });
-        onionBtn.addEventListener("pointerup", function () { deleteIngredient(onion); });
+        cabbageBtn.addEventListener("pointerup", function () { deleteIngredient(); });
+        lettuceBtn.addEventListener("pointerup", function () { deleteIngredient(); });
+        cornBtn.addEventListener("pointerup", function () { deleteIngredient(); });
+        tomatoBtn.addEventListener("pointerup", function () { deleteIngredient(); });
+        onionBtn.addEventListener("pointerup", function () { deleteIngredient(); });
         let doenerImg = document.createElement("img");
         doenerImg.src = "assets/doener.png";
         document.getElementById("canvasDiv")?.appendChild(doenerImg);
