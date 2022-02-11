@@ -4,6 +4,8 @@ namespace Abschlussarbeit {
     let employees: Employee[] = [];
     let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350)];
 
+
+
     let allFood: string[] = ["Döner", "Yufka", "Lahmacun"];
     let allIngredients: string[] = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
     let completeOrder: string[] = [];
@@ -127,11 +129,41 @@ namespace Abschlussarbeit {
     }
 
 
-    function clickIngredient(): void {
-        cornBar.amountBar = cornBar.amountBar - 25;
-        cornBar.draw();
-        console.log(cornBar.amountBar);
+    function clickIngredient(_event: Event): void {
+        let id: HTMLElement = <HTMLElement>_event.target;
+        let idString: string = id.id;
+
+        if (idString == "button0" && cabbageBar.amountBar > 0) {
+            cabbageBar.amountBar = cabbageBar.amountBar - 25;
+            cabbageBar.draw();
+            choosenIngredients.push("Kraut");
+        }
+
+        if (idString == "button1" && lettuceBar.amountBar > 0) {
+            lettuceBar.amountBar = lettuceBar.amountBar - 25;
+            lettuceBar.draw();
+            choosenIngredients.push("Salat");
+        }
+
+        if (idString == "button2" && cornBar.amountBar > 0) {
+            cornBar.amountBar = cornBar.amountBar - 25;
+            cornBar.draw();
+            choosenIngredients.push("Mais");
+        }
+
+        if (idString == "button3") {
+            //hier tomate
+        }
+
+        if (idString == "button4" && onionBar.amountBar > 0) {
+            onionBar.amountBar = onionBar.amountBar - 25;
+            onionBar.draw();
+            choosenIngredients.push("Zwiebel");
+        }
+
+
         // geklickte zutat soll in choosenIngredient array gepusht werden
+
 
 
 
@@ -146,11 +178,11 @@ namespace Abschlussarbeit {
         let capStock: number;
         let energyMA: number;
 
-        let corn: number;
-        let lettuce: number;
-        let onion: number;
-        let cabbage: number;
-        let tomato: number;
+        // let corn: number;
+        // let lettuce: number;
+        // let onion: number;
+        // let cabbage: number;
+        // let tomato: number;
 
 
         anzahlMA = Number(formData.get("mitarbeierzahl"));
@@ -159,27 +191,27 @@ namespace Abschlussarbeit {
         capStock = Number(formData.get("kapazitätRohmaterial"));
         energyMA = Number(formData.get("Energie"));
 
-        corn = capIngredients;
-        lettuce = capIngredients;
-        onion = capIngredients;
-        cabbage = capIngredients;
-        tomato = capIngredients;
+        // corn = capIngredients;
+        // lettuce = capIngredients;
+        // onion = capIngredients;
+        // cabbage = capIngredients;
+        // tomato = capIngredients;
 
         // wenn auf den button bei einer Zutat gedrückt wird, soll zb corn = corn - 25
 
-        tomatoBar = new Tomato(capIngredients, capStock, tomato);
-        tomatoBar.draw();
+        // tomatoBar = new Tomato(capIngredients, capStock, tomato);
+        // tomatoBar.draw();
 
-        cabbageBar = new Cabbage(capIngredients, capStock, cabbage);
+        cabbageBar = new Cabbage(capIngredients, capStock);
         cabbageBar.draw();
 
-        cornBar = new Corn(capIngredients, capStock, corn);
+        cornBar = new Corn(capIngredients, capStock);
         cornBar.draw();
 
-        lettuceBar = new Lettuce(capIngredients, capStock, lettuce);
+        lettuceBar = new Lettuce(capIngredients, capStock);
         lettuceBar.draw();
 
-        onionBar = new Onion(capIngredients, capStock, onion);
+        onionBar = new Onion(capIngredients, capStock);
         onionBar.draw();
 
 
@@ -206,11 +238,11 @@ namespace Abschlussarbeit {
         let onionBtn: HTMLButtonElement;
         onionBtn = <HTMLButtonElement>document.getElementById("button4");
 
-        cabbageBtn.addEventListener("pointerup", function (): void { clickIngredient(); });
-        lettuceBtn.addEventListener("pointerup", function (): void { clickIngredient(); });
-        cornBtn.addEventListener("pointerup", function (): void { clickIngredient(); });
-        tomatoBtn.addEventListener("pointerup", function (): void { clickIngredient(); });
-        onionBtn.addEventListener("pointerup", function (): void { clickIngredient(); });
+        cabbageBtn.addEventListener("pointerup", clickIngredient);
+        lettuceBtn.addEventListener("pointerup", clickIngredient);
+        cornBtn.addEventListener("pointerup", clickIngredient);
+        tomatoBtn.addEventListener("pointerup", clickIngredient);
+        onionBtn.addEventListener("pointerup", clickIngredient);
 
 
         let doenerImg: HTMLImageElement = document.createElement("img");
@@ -254,6 +286,7 @@ namespace Abschlussarbeit {
             // testCustomer.draw(new Vector(50, 500));
             // testCustomer.move(1 / 100);
         }
+
 
 
     }

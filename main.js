@@ -110,10 +110,32 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.lineTo(800, 500);
         Abschlussarbeit.crc2.stroke();
     }
-    function clickIngredient() {
-        cornBar.amountBar = cornBar.amountBar - 25;
-        cornBar.draw();
-        console.log(cornBar.amountBar);
+    function clickIngredient(_event) {
+        let id = _event.target;
+        let idString = id.id;
+        if (idString == "button0" && cabbageBar.amountBar > 0) {
+            cabbageBar.amountBar = cabbageBar.amountBar - 25;
+            cabbageBar.draw();
+            choosenIngredients.push("Kraut");
+        }
+        if (idString == "button1" && lettuceBar.amountBar > 0) {
+            lettuceBar.amountBar = lettuceBar.amountBar - 25;
+            lettuceBar.draw();
+            choosenIngredients.push("Salat");
+        }
+        if (idString == "button2" && cornBar.amountBar > 0) {
+            cornBar.amountBar = cornBar.amountBar - 25;
+            cornBar.draw();
+            choosenIngredients.push("Mais");
+        }
+        if (idString == "button3") {
+            //hier tomate
+        }
+        if (idString == "button4" && onionBar.amountBar > 0) {
+            onionBar.amountBar = onionBar.amountBar - 25;
+            onionBar.draw();
+            choosenIngredients.push("Zwiebel");
+        }
         // geklickte zutat soll in choosenIngredient array gepusht werden
     }
     function getSettingData() {
@@ -123,31 +145,31 @@ var Abschlussarbeit;
         let capIngredients;
         let capStock;
         let energyMA;
-        let corn;
-        let lettuce;
-        let onion;
-        let cabbage;
-        let tomato;
+        // let corn: number;
+        // let lettuce: number;
+        // let onion: number;
+        // let cabbage: number;
+        // let tomato: number;
         anzahlMA = Number(formData.get("mitarbeierzahl"));
         intervallCustomer = Number(formData.get("kundenIntervall"));
         capIngredients = Number(formData.get("kapazitätTheke"));
         capStock = Number(formData.get("kapazitätRohmaterial"));
         energyMA = Number(formData.get("Energie"));
-        corn = capIngredients;
-        lettuce = capIngredients;
-        onion = capIngredients;
-        cabbage = capIngredients;
-        tomato = capIngredients;
+        // corn = capIngredients;
+        // lettuce = capIngredients;
+        // onion = capIngredients;
+        // cabbage = capIngredients;
+        // tomato = capIngredients;
         // wenn auf den button bei einer Zutat gedrückt wird, soll zb corn = corn - 25
-        tomatoBar = new Abschlussarbeit.Tomato(capIngredients, capStock, tomato);
-        tomatoBar.draw();
-        cabbageBar = new Abschlussarbeit.Cabbage(capIngredients, capStock, cabbage);
+        // tomatoBar = new Tomato(capIngredients, capStock, tomato);
+        // tomatoBar.draw();
+        cabbageBar = new Abschlussarbeit.Cabbage(capIngredients, capStock);
         cabbageBar.draw();
-        cornBar = new Abschlussarbeit.Corn(capIngredients, capStock, corn);
+        cornBar = new Abschlussarbeit.Corn(capIngredients, capStock);
         cornBar.draw();
-        lettuceBar = new Abschlussarbeit.Lettuce(capIngredients, capStock, lettuce);
+        lettuceBar = new Abschlussarbeit.Lettuce(capIngredients, capStock);
         lettuceBar.draw();
-        onionBar = new Abschlussarbeit.Onion(capIngredients, capStock, onion);
+        onionBar = new Abschlussarbeit.Onion(capIngredients, capStock);
         onionBar.draw();
         //create Buttons for Ingredients
         for (let i = 0; i < 5; i++) {
@@ -165,11 +187,11 @@ var Abschlussarbeit;
         tomatoBtn = document.getElementById("button3");
         let onionBtn;
         onionBtn = document.getElementById("button4");
-        cabbageBtn.addEventListener("pointerup", function () { clickIngredient(); });
-        lettuceBtn.addEventListener("pointerup", function () { clickIngredient(); });
-        cornBtn.addEventListener("pointerup", function () { clickIngredient(); });
-        tomatoBtn.addEventListener("pointerup", function () { clickIngredient(); });
-        onionBtn.addEventListener("pointerup", function () { clickIngredient(); });
+        cabbageBtn.addEventListener("pointerup", clickIngredient);
+        lettuceBtn.addEventListener("pointerup", clickIngredient);
+        cornBtn.addEventListener("pointerup", clickIngredient);
+        tomatoBtn.addEventListener("pointerup", clickIngredient);
+        onionBtn.addEventListener("pointerup", clickIngredient);
         let doenerImg = document.createElement("img");
         doenerImg.src = "assets/doener.png";
         document.getElementById("canvasDiv")?.appendChild(doenerImg);

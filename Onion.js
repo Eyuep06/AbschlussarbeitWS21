@@ -2,12 +2,12 @@
 var Abschlussarbeit;
 (function (Abschlussarbeit) {
     class Onion extends Abschlussarbeit.Ingredient {
-        constructor(_amountBar, _amountStock, _ownAmount) {
-            super("#ECF8E0", new Abschlussarbeit.Vector(700, 400), _amountBar, _amountStock, _ownAmount);
-            this.ownAmount = this.amountBar;
+        constructor(_amountBar, _amountStock) {
+            super("#ECF8E0", new Abschlussarbeit.Vector(700, 400), _amountBar, _amountStock);
+            // this.ownAmount = this.amountBar;
             this.amountBar = _amountBar;
             this.amountStock = _amountStock;
-            this.ownAmount = _amountStock;
+            // this.ownAmount = _amountStock;
         }
         draw() {
             Abschlussarbeit.crc2.fillStyle = this.color;
