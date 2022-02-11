@@ -253,6 +253,7 @@ namespace Abschlussarbeit {
     }
 
     function createOrder(): void {
+        let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
         let food: string;
         food = allFood[rndmNumFood];
         allIngredients.splice(rndmNumIngredient);
@@ -260,7 +261,18 @@ namespace Abschlussarbeit {
         completeOrder.push(food);
         Array.prototype.push.apply(completeOrder, allIngredients);
         console.log(completeOrder);
-        
+
+        let orderArea: HTMLDivElement;
+        orderArea = document.createElement("div");
+        orderArea.id = "orderDiv";
+
+        let orderText: HTMLParagraphElement = document.createElement("p");
+        orderText.innerHTML = completeOrder.toString();
+
+        orderArea.appendChild(orderText);
+
+        body.appendChild(orderArea);
+
 
 
     }

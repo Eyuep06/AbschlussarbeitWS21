@@ -196,6 +196,7 @@ var Abschlussarbeit;
         }
     }
     function createOrder() {
+        let body = document.querySelector("body");
         let food;
         food = allFood[rndmNumFood];
         allIngredients.splice(rndmNumIngredient);
@@ -203,6 +204,13 @@ var Abschlussarbeit;
         completeOrder.push(food);
         Array.prototype.push.apply(completeOrder, allIngredients);
         console.log(completeOrder);
+        let orderArea;
+        orderArea = document.createElement("div");
+        orderArea.id = "orderDiv";
+        let orderText = document.createElement("p");
+        orderText.innerHTML = completeOrder.toString();
+        orderArea.appendChild(orderText);
+        body.appendChild(orderArea);
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));
 //# sourceMappingURL=main.js.map

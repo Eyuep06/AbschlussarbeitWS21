@@ -50,37 +50,48 @@ h1 {
     cursor: pointer;
     background: none;
     border: none;
-    
+
 }
 
-#button0{
+#button0 {
     left: -505px;
     bottom: 103px
 }
 
-#button1{
+#button1 {
     left: -505px;
     bottom: 103px;
 }
 
-#button2{
+#button2 {
     left: -505px;
     bottom: 103px;
 }
 
-#button3{
+#button3 {
     left: -505px;
     bottom: 103px;
 }
 
-#button4{
+#button4 {
     left: 700px;
     bottom: 204px;
 }
 
-img{
+img {
     position: relative;
     left: -98px;
     bottom: 204px;
     margin-right: 1px;
+}
+
+#orderDiv {
+    background-color: aqua;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    right: 200px;
+    top: 8px;
+    height: 95px;
+    width: 250px;
+
 }
