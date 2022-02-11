@@ -9,6 +9,7 @@ var Abschlussarbeit;
     let completeOrder = [];
     let rndmNumFood;
     let rndmNumIngredient;
+    let choosenIngredients = [];
     rndmNumFood = Math.floor(Math.random() * 3);
     rndmNumIngredient = Math.floor(Math.random() * 5);
     let tomatoBar;
@@ -38,7 +39,7 @@ var Abschlussarbeit;
         startButton.addEventListener("pointerup", startGame);
         drawRestaurant();
         window.setInterval(update, 1000);
-        createOrder();
+        //createOrder();
     }
     function startGame() {
         //formData = new FormData(document.forms[0]);
@@ -109,10 +110,11 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.lineTo(800, 500);
         Abschlussarbeit.crc2.stroke();
     }
-    function deleteIngredient() {
+    function clickIngredient() {
         cornBar.amountBar = cornBar.amountBar - 25;
         cornBar.draw();
         console.log(cornBar.amountBar);
+        // geklickte zutat soll in choosenIngredient array gepusht werden
     }
     function getSettingData() {
         formData = new FormData(document.forms[0]);
@@ -163,11 +165,11 @@ var Abschlussarbeit;
         tomatoBtn = document.getElementById("button3");
         let onionBtn;
         onionBtn = document.getElementById("button4");
-        cabbageBtn.addEventListener("pointerup", function () { deleteIngredient(); });
-        lettuceBtn.addEventListener("pointerup", function () { deleteIngredient(); });
-        cornBtn.addEventListener("pointerup", function () { deleteIngredient(); });
-        tomatoBtn.addEventListener("pointerup", function () { deleteIngredient(); });
-        onionBtn.addEventListener("pointerup", function () { deleteIngredient(); });
+        cabbageBtn.addEventListener("pointerup", function () { clickIngredient(); });
+        lettuceBtn.addEventListener("pointerup", function () { clickIngredient(); });
+        cornBtn.addEventListener("pointerup", function () { clickIngredient(); });
+        tomatoBtn.addEventListener("pointerup", function () { clickIngredient(); });
+        onionBtn.addEventListener("pointerup", function () { clickIngredient(); });
         let doenerImg = document.createElement("img");
         doenerImg.src = "assets/doener.png";
         document.getElementById("canvasDiv")?.appendChild(doenerImg);
@@ -211,6 +213,16 @@ var Abschlussarbeit;
         orderText.innerHTML = completeOrder.toString();
         orderArea.appendChild(orderText);
         body.appendChild(orderArea);
+    }
+    function checkOrder() {
+        completeOrder.sort();
+        choosenIngredients.sort();
+        if (completeOrder == choosenIngredients) {
+            console.log("richtig");
+        }
+        else {
+            console.log("this aint it");
+        }
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));
 //# sourceMappingURL=main.js.map

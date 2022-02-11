@@ -9,6 +9,7 @@ namespace Abschlussarbeit {
     let completeOrder: string[] = [];
     let rndmNumFood: number;
     let rndmNumIngredient: number;
+    let choosenIngredients: string[] = [];
 
     rndmNumFood = Math.floor(Math.random() * 3);
     rndmNumIngredient = Math.floor(Math.random() * 5);
@@ -45,7 +46,7 @@ namespace Abschlussarbeit {
 
         drawRestaurant();
         window.setInterval(update, 1000);
-        createOrder();
+        //createOrder();
     }
 
 
@@ -126,10 +127,11 @@ namespace Abschlussarbeit {
     }
 
 
-    function deleteIngredient(): void {
+    function clickIngredient(): void {
         cornBar.amountBar = cornBar.amountBar - 25;
         cornBar.draw();
         console.log(cornBar.amountBar);
+        // geklickte zutat soll in choosenIngredient array gepusht werden
 
 
 
@@ -204,11 +206,11 @@ namespace Abschlussarbeit {
         let onionBtn: HTMLButtonElement;
         onionBtn = <HTMLButtonElement>document.getElementById("button4");
 
-        cabbageBtn.addEventListener("pointerup", function (): void { deleteIngredient(); });
-        lettuceBtn.addEventListener("pointerup", function (): void { deleteIngredient(); });
-        cornBtn.addEventListener("pointerup", function (): void { deleteIngredient(); });
-        tomatoBtn.addEventListener("pointerup", function (): void { deleteIngredient(); });
-        onionBtn.addEventListener("pointerup", function (): void { deleteIngredient(); });
+        cabbageBtn.addEventListener("pointerup", function (): void { clickIngredient(); });
+        lettuceBtn.addEventListener("pointerup", function (): void { clickIngredient(); });
+        cornBtn.addEventListener("pointerup", function (): void { clickIngredient(); });
+        tomatoBtn.addEventListener("pointerup", function (): void { clickIngredient(); });
+        onionBtn.addEventListener("pointerup", function (): void { clickIngredient(); });
 
 
         let doenerImg: HTMLImageElement = document.createElement("img");
@@ -275,6 +277,19 @@ namespace Abschlussarbeit {
 
 
 
+    }
+
+    function checkOrder(): void {
+        completeOrder.sort();
+        choosenIngredients.sort();
+        if (completeOrder == choosenIngredients) {
+            console.log("richtig");
+        }
+
+        else {
+            console.log("this aint it");
+
+        }
     }
 
 

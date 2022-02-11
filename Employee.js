@@ -10,8 +10,10 @@ var Abschlussarbeit;
             this.position = (_position);
         }
         setTask() {
+            // mach ich noch
         }
         doTask() {
+            //mach ich noch
         }
         updateMood() {
             this.energy = this.energy - 1;

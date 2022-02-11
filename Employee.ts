@@ -5,7 +5,7 @@ namespace Abschlussarbeit {
         energy: number;
 
         constructor(_position: Vector, _energy: number) {
-            super(_position)
+            super(_position);
             this.position = _position;
             this.energy = _energy;
             super.draw(_position);
@@ -15,37 +15,37 @@ namespace Abschlussarbeit {
         }
 
         setTask(): void {
-
+            // mach ich noch
         }
 
 
         doTask(): void {
-
+            //mach ich noch
         }
 
         updateMood(): void {
 
-            this.energy = this.energy - 1
-        
+            this.energy = this.energy - 1;
+
 
 
             if (this.energy >= 67) {
-               this.mood = MOOD.HAPPY
+                this.mood = MOOD.HAPPY;
             }
 
             if (this.energy < 67 && this.energy > 33) {
-                this.mood = MOOD.MEH
+                this.mood = MOOD.MEH;
             }
 
             if (this.energy <= 33 && this.energy > 0) {
-                this.mood = MOOD.SAD
+                this.mood = MOOD.SAD;
             }
 
             if (this.energy == 0) {
-               this.mood = MOOD.KO
+                this.mood = MOOD.KO;
             }
 
-            
+
 
 
 
