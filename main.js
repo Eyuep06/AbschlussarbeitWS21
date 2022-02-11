@@ -136,7 +136,6 @@ var Abschlussarbeit;
             onionBar.draw();
             choosenIngredients.push("Zwiebel");
         }
-        // geklickte zutat soll in choosenIngredient array gepusht werden
     }
     function getSettingData() {
         formData = new FormData(document.forms[0]);
@@ -202,6 +201,7 @@ var Abschlussarbeit;
         lahmacunImg.src = "assets/lahmacun.png";
         document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
         createEmployees(anzahlMA);
+        drawController();
     }
     function createEmployees(nEmployees) {
         formData = new FormData(document.forms[0]);
@@ -248,6 +248,29 @@ var Abschlussarbeit;
         }
         else if (completeOrder.length == checkOrder.length && completeOrder != choosenIngredients) {
             console.log("this aint it");
+        }
+    }
+    function drawController() {
+        let employeesString = [];
+        let body = document.querySelector("body");
+        let controllerArea;
+        controllerArea = document.createElement("div");
+        controllerArea.id = "controllerDiv";
+        for (let i = 1; i < employees.length + 1; i++) {
+            employeesString.push("Mitarbeiter" + i);
+        }
+        // let employeeSelection: HTMLSelectElement = document.createElement("select");
+        // employeeSelection.innerHTML = "";
+        body.appendChild(controllerArea);
+        let selectList = document.createElement("select");
+        selectList.id = "mySelect";
+        controllerArea.appendChild(selectList);
+        //Create and append the options
+        for (let i = 0; i < employees.length; i++) {
+            let option = document.createElement("option");
+            option.value = employeesString[i];
+            option.text = employeesString[i];
+            selectList.appendChild(option);
         }
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));

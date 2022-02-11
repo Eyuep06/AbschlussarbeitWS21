@@ -161,12 +161,6 @@ namespace Abschlussarbeit {
             choosenIngredients.push("Zwiebel");
         }
 
-
-        // geklickte zutat soll in choosenIngredient array gepusht werden
-
-
-
-
     }
 
 
@@ -258,6 +252,8 @@ namespace Abschlussarbeit {
         document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
 
         createEmployees(anzahlMA);
+        drawController();
+
     }
 
 
@@ -327,6 +323,35 @@ namespace Abschlussarbeit {
             console.log("this aint it");
 
         }
+    }
+
+
+    function drawController(): void {
+        let employeesString: string[] = [];
+        let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
+        let controllerArea: HTMLDivElement;
+        controllerArea = document.createElement("div");
+        controllerArea.id = "controllerDiv";
+        for (let i: number = 1; i < employees.length + 1; i++) {
+            employeesString.push("Mitarbeiter" + i);
+        }
+
+        // let employeeSelection: HTMLSelectElement = document.createElement("select");
+        // employeeSelection.innerHTML = "";
+
+        body.appendChild(controllerArea);
+        let selectList: HTMLSelectElement = document.createElement("select");
+        selectList.id = "mySelect";
+        controllerArea.appendChild(selectList);
+
+        //Create and append the options
+        for (let i: number = 0; i < employees.length; i++) {
+            let option: HTMLOptionElement = document.createElement("option");
+            option.value = employeesString[i];
+            option.text = employeesString[i];
+            selectList.appendChild(option);
+        }
+
     }
 
 
