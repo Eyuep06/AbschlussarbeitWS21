@@ -114,16 +114,22 @@ var Abschlussarbeit;
         let id = _event.target;
         let idString = id.id;
         if (idString == "button0" && cabbageBar.amountBar > 0) {
+            Abschlussarbeit.crc2.fillStyle = "white";
+            Abschlussarbeit.crc2.fillRect(301, 401, 98, 98);
             cabbageBar.amountBar = cabbageBar.amountBar - 25;
             cabbageBar.draw();
             choosenIngredients.push("Kraut");
         }
         if (idString == "button1" && lettuceBar.amountBar > 0) {
+            Abschlussarbeit.crc2.fillStyle = "white";
+            Abschlussarbeit.crc2.fillRect(401, 401, 98, 98);
             lettuceBar.amountBar = lettuceBar.amountBar - 25;
             lettuceBar.draw();
             choosenIngredients.push("Salat");
         }
         if (idString == "button2" && cornBar.amountBar > 0) {
+            Abschlussarbeit.crc2.fillStyle = "white";
+            Abschlussarbeit.crc2.fillRect(501, 401, 98, 98);
             cornBar.amountBar = cornBar.amountBar - 25;
             cornBar.draw();
             choosenIngredients.push("Mais");
@@ -132,6 +138,8 @@ var Abschlussarbeit;
             //hier tomate
         }
         if (idString == "button4" && onionBar.amountBar > 0) {
+            Abschlussarbeit.crc2.fillStyle = "white";
+            Abschlussarbeit.crc2.fillRect(701, 401, 98, 98);
             onionBar.amountBar = onionBar.amountBar - 25;
             onionBar.draw();
             choosenIngredients.push("Zwiebel");
@@ -200,6 +208,9 @@ var Abschlussarbeit;
         let lahmacunImg = document.createElement("img");
         lahmacunImg.src = "assets/lahmacun.png";
         document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
+        lahmacunImg.addEventListener("pointerup", function () { clickFood("Lahmacun"); });
+        doenerImg.addEventListener("pointerup", function () { clickFood("Döner"); });
+        yufkaImg.addEventListener("pointerup", function () { clickFood("Yufka"); });
         createEmployees(anzahlMA);
         drawController();
     }
@@ -271,6 +282,17 @@ var Abschlussarbeit;
             option.value = employeesString[i];
             option.text = employeesString[i];
             selectList.appendChild(option);
+        }
+    }
+    function clickFood(food) {
+        if (food == "Lahmacun") {
+            choosenIngredients.push("Lahmacun");
+        }
+        if (food == "Yufka") {
+            choosenIngredients.push("Yufka");
+        }
+        if (food == "Döner") {
+            choosenIngredients.push("Döner");
         }
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));

@@ -134,18 +134,24 @@ namespace Abschlussarbeit {
         let idString: string = id.id;
 
         if (idString == "button0" && cabbageBar.amountBar > 0) {
+            crc2.fillStyle = "white";
+            crc2.fillRect(301, 401, 98, 98);
             cabbageBar.amountBar = cabbageBar.amountBar - 25;
             cabbageBar.draw();
             choosenIngredients.push("Kraut");
         }
 
         if (idString == "button1" && lettuceBar.amountBar > 0) {
+            crc2.fillStyle = "white";
+            crc2.fillRect(401, 401, 98, 98);
             lettuceBar.amountBar = lettuceBar.amountBar - 25;
             lettuceBar.draw();
             choosenIngredients.push("Salat");
         }
 
         if (idString == "button2" && cornBar.amountBar > 0) {
+            crc2.fillStyle = "white";
+            crc2.fillRect(501, 401, 98, 98);
             cornBar.amountBar = cornBar.amountBar - 25;
             cornBar.draw();
             choosenIngredients.push("Mais");
@@ -156,6 +162,8 @@ namespace Abschlussarbeit {
         }
 
         if (idString == "button4" && onionBar.amountBar > 0) {
+            crc2.fillStyle = "white";
+            crc2.fillRect(701, 401, 98, 98);
             onionBar.amountBar = onionBar.amountBar - 25;
             onionBar.draw();
             choosenIngredients.push("Zwiebel");
@@ -250,6 +258,10 @@ namespace Abschlussarbeit {
         let lahmacunImg: HTMLImageElement = document.createElement("img");
         lahmacunImg.src = "assets/lahmacun.png";
         document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
+
+        lahmacunImg.addEventListener("pointerup", function (): void { clickFood("Lahmacun"); });
+        doenerImg.addEventListener("pointerup", function (): void { clickFood("Döner"); });
+        yufkaImg.addEventListener("pointerup", function (): void { clickFood("Yufka"); });
 
         createEmployees(anzahlMA);
         drawController();
@@ -351,6 +363,26 @@ namespace Abschlussarbeit {
             option.text = employeesString[i];
             selectList.appendChild(option);
         }
+
+    }
+
+    function clickFood(food: string): void {
+
+        if (food == "Lahmacun") {
+            choosenIngredients.push("Lahmacun");
+            
+        }
+
+        if (food == "Yufka") {
+            choosenIngredients.push("Yufka");
+            
+        }
+
+        if (food == "Döner") {
+            choosenIngredients.push("Döner");
+            
+        }
+
 
     }
 
