@@ -4,6 +4,13 @@ var Abschlussarbeit;
     let formData;
     let employees = [];
     let taskPositions = [new Abschlussarbeit.Vector(50, 250), new Abschlussarbeit.Vector(200, 250), new Abschlussarbeit.Vector(450, 250), new Abschlussarbeit.Vector(550, 350)];
+    let allFood = ["Döner", "Yufka", "Lahmacun"];
+    let allIngredients = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
+    let completeOrder = [];
+    let rndmNumFood;
+    let rndmNumIngredient;
+    rndmNumFood = Math.floor(Math.random() * 3);
+    rndmNumIngredient = Math.floor(Math.random() * 5);
     let tomatoBar;
     let cabbageBar;
     let cornBar;
@@ -31,6 +38,7 @@ var Abschlussarbeit;
         startButton.addEventListener("pointerup", startGame);
         drawRestaurant();
         window.setInterval(update, 1000);
+        createOrder();
     }
     function startGame() {
         //formData = new FormData(document.forms[0]);
@@ -186,6 +194,15 @@ var Abschlussarbeit;
             employees[i].draw(taskPositions[i]);
             employees[i].updateMood();
         }
+    }
+    function createOrder() {
+        let food;
+        food = allFood[rndmNumFood];
+        allIngredients.splice(rndmNumIngredient);
+        // console.log(food, allIngredients);
+        completeOrder.push(food);
+        Array.prototype.push.apply(completeOrder, allIngredients);
+        console.log(completeOrder);
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));
 //# sourceMappingURL=main.js.map

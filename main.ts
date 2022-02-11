@@ -3,6 +3,16 @@ namespace Abschlussarbeit {
     let formData: FormData;
     let employees: Employee[] = [];
     let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350)];
+
+    let allFood: string[] = ["Döner", "Yufka", "Lahmacun"];
+    let allIngredients: string[] = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
+    let completeOrder: string[] = [];
+    let rndmNumFood: number;
+    let rndmNumIngredient: number;
+
+    rndmNumFood = Math.floor(Math.random() * 3);
+    rndmNumIngredient = Math.floor(Math.random() * 5);
+
     let tomatoBar: Tomato;
     let cabbageBar: Cabbage;
     let cornBar: Corn;
@@ -35,6 +45,7 @@ namespace Abschlussarbeit {
 
         drawRestaurant();
         window.setInterval(update, 1000);
+        createOrder();
     }
 
 
@@ -237,6 +248,19 @@ namespace Abschlussarbeit {
             employees[i].draw(taskPositions[i]);
             employees[i].updateMood();
         }
+
+
+    }
+
+    function createOrder(): void {
+        let food: string;
+        food = allFood[rndmNumFood];
+        allIngredients.splice(rndmNumIngredient);
+        // console.log(food, allIngredients);
+        completeOrder.push(food);
+        Array.prototype.push.apply(completeOrder, allIngredients);
+        console.log(completeOrder);
+        
 
 
     }
