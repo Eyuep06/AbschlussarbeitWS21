@@ -3,12 +3,12 @@ var Abschlussarbeit;
 (function (Abschlussarbeit) {
     class Customer extends Abschlussarbeit.Human {
         constructor(_position, _satisfaction) {
-            super(_position);
+            super(new Abschlussarbeit.Vector(50, 500));
             this.position = _position;
             this.satisfaction = _satisfaction;
-        }
-        move() {
-            //mach ich am Ende
+            this.velocity.forCustomer(100, 200);
+            super.draw(this.position);
+            super.move(1 / 100);
         }
         updateMood() {
             this.satisfaction = this.satisfaction - 5;

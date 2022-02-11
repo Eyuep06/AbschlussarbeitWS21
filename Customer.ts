@@ -5,14 +5,15 @@ namespace Abschlussarbeit {
         satisfaction: number;
 
         constructor(_position: Vector, _satisfaction: number) {
-            super(_position);
+            super(new Vector(50, 500));
             this.position = _position;
             this.satisfaction = _satisfaction;
+            this.velocity.forCustomer(100, 200);
+            super.draw(this.position);
+            super.move(1 / 100);
         }
 
-        move(): void {
-            //mach ich am Ende
-        }
+
 
         updateMood(): void {
             this.satisfaction = this.satisfaction - 5;

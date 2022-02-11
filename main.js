@@ -195,6 +195,10 @@ var Abschlussarbeit;
         for (let i = 0; i < employees.length; i++) {
             employees[i].draw(taskPositions[i]);
             employees[i].updateMood();
+            // let testCustomer: Customer;
+            // testCustomer = new Customer(new Vector(50, 500), 100);
+            // testCustomer.draw(new Vector(50, 500));
+            // testCustomer.move(1 / 100);
         }
     }
     function createOrder() {
@@ -217,10 +221,10 @@ var Abschlussarbeit;
     function checkOrder() {
         completeOrder.sort();
         choosenIngredients.sort();
-        if (completeOrder == choosenIngredients) {
+        if (completeOrder.length == checkOrder.length && completeOrder == choosenIngredients) {
             console.log("richtig");
         }
-        else {
+        else if (completeOrder.length == checkOrder.length && completeOrder != choosenIngredients) {
             console.log("this aint it");
         }
     }

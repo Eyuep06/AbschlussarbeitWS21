@@ -9,9 +9,13 @@ namespace Abschlussarbeit {
 
         }
 
-        move(_timeslice: number) {
-
+        move(_timeslice: number): void {
+            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
+            offset.scale(_timeslice);
+            this.position.add(offset);
         }
+
+
 
         draw(_position: Vector): void {
 
@@ -57,7 +61,7 @@ namespace Abschlussarbeit {
                     crc2.lineWidth = 2;
                     crc2.beginPath();
                     crc2.moveTo(_position.x - 10, _position.y + 15);
-                    crc2.lineTo(_position.x + 10, _position.y +15)
+                    crc2.lineTo(_position.x + 10, _position.y + 15)
                     crc2.stroke();
                     crc2.closePath();
 
@@ -67,7 +71,7 @@ namespace Abschlussarbeit {
                     crc2.strokeStyle = 'black';
                     crc2.lineWidth = 2;
                     crc2.beginPath();
-                    crc2.arc(_position.x, _position.y +15, 30, 0, -1 * Math.PI, true);
+                    crc2.arc(_position.x, _position.y + 15, 30, 0, -1 * Math.PI, true);
                     crc2.stroke();
                     crc2.closePath();
 
@@ -77,9 +81,9 @@ namespace Abschlussarbeit {
                     crc2.strokeStyle = 'black';
                     crc2.lineWidth = 2;
                     crc2.beginPath();
-                    crc2.moveTo(_position.x -10, _position.y+20);
-                    crc2.lineTo(_position.x +10, _position.y )
-                    crc2.moveTo(_position.x + 10, _position.y + 20 )
+                    crc2.moveTo(_position.x - 10, _position.y + 20);
+                    crc2.lineTo(_position.x + 10, _position.y)
+                    crc2.moveTo(_position.x + 10, _position.y + 20)
                     crc2.lineTo(_position.x - 10, _position.y)
                     crc2.stroke();
                     crc2.closePath();

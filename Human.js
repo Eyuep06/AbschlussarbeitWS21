@@ -5,6 +5,9 @@ var Abschlussarbeit;
         constructor(_position) {
         }
         move(_timeslice) {
+            let offset = new Abschlussarbeit.Vector(this.velocity.x, this.velocity.y);
+            offset.scale(_timeslice);
+            this.position.add(offset);
         }
         draw(_position) {
             //head
