@@ -144,6 +144,13 @@ namespace Abschlussarbeit {
         document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
         lahmacunImg.id = "img3";
 
+        let phoneImg: HTMLImageElement = document.createElement("img");
+        phoneImg.src = "assets/Telefon.png";
+        document.getElementById("canvasDiv")?.appendChild(phoneImg);
+        phoneImg.id = "img4";
+
+
+
         lahmacunImg.addEventListener("pointerup", function (): void { clickFood("Lahmacun"); });
         doenerImg.addEventListener("pointerup", function (): void { clickFood("Döner"); });
         yufkaImg.addEventListener("pointerup", function (): void { clickFood("Yufka"); });

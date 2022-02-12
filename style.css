@@ -54,27 +54,27 @@ h1 {
 }
 
 #button0 {
-    left: -802px;
-    bottom: 103px
+    left: 301px;
+    bottom: 203px
 }
 
 #button1 {
-    left: 402px;
+    left: 301px;
     bottom: 203px;
 }
 
 #button2 {
-    left: 402px;
+    left: 301px;
     bottom: 203px;
 }
 
 #button3 {
-    left: 402px;
+    left: 301px;
     bottom: 203px;
 }
 
 #button4 {
-    left: 400px;
+    left: 301px;
     bottom: 204px;
 }
 
@@ -86,6 +86,13 @@ h1 {
     bottom: 101px;
     margin-right: 1px;
     cursor: pointer;
+}
+
+#img4 {
+    position: relative;
+    left: -1100px;
+    top: -401px;
+
 }
 
 #orderDiv {
