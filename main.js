@@ -3,16 +3,16 @@ var Abschlussarbeit;
 (function (Abschlussarbeit) {
     let formData;
     let employees = [];
-    let taskPositions = [new Abschlussarbeit.Vector(50, 250), new Abschlussarbeit.Vector(200, 250), new Abschlussarbeit.Vector(450, 250), new Abschlussarbeit.Vector(550, 350)];
+    let customerArray = [];
+    let taskPositions = [new Abschlussarbeit.Vector(50, 250), new Abschlussarbeit.Vector(200, 250), new Abschlussarbeit.Vector(450, 250), new Abschlussarbeit.Vector(550, 350), new Abschlussarbeit.Vector(1000, 650), new Abschlussarbeit.Vector(1000, 650), new Abschlussarbeit.Vector(1000, 650)];
     let customer;
-    let allFood = ["Döner", "Yufka", "Lahmacun"];
-    let allIngredients = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
-    let completeOrder = [];
-    let rndmNumFood;
-    let rndmNumIngredient;
+    let orderText;
+    let restaurantImgData;
+    Abschlussarbeit.allFood = ["Döner", "Yufka", "Lahmacun"];
+    Abschlussarbeit.allIngredients = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
     let choosenIngredients = [];
-    rndmNumFood = Math.floor(Math.random() * 3);
-    rndmNumIngredient = Math.floor(Math.random() * 5);
+    Abschlussarbeit.rndmNumFood = Math.floor(Math.random() * 3);
+    Abschlussarbeit.rndmNumIngredient = Math.floor(Math.random() * 5);
     let tomatoBar;
     let cabbageBar;
     let cornBar;
@@ -35,10 +35,17 @@ var Abschlussarbeit;
     })(TASK = Abschlussarbeit.TASK || (Abschlussarbeit.TASK = {}));
     window.addEventListener("load", hdndlLoad);
     function hdndlLoad(_event) {
+        let body = document.querySelector("body");
         let canvas = document.querySelector("canvas");
         Abschlussarbeit.crc2 = canvas.getContext("2d");
         let startButton = document.querySelector(".startButton");
         startButton.addEventListener("pointerup", startGame);
+        orderText = document.createElement("p");
+        let orderArea;
+        orderArea = document.createElement("div");
+        orderArea.id = "orderDiv";
+        orderArea.appendChild(orderText);
+        body.appendChild(orderArea);
         drawRestaurant();
         window.setInterval(update, 1000);
         //createOrder();
@@ -46,11 +53,15 @@ var Abschlussarbeit;
     function startGame() {
         //formData = new FormData(document.forms[0]);
         getSettingData();
+        formData = new FormData(document.forms[0]);
+        let intervallCustomer;
+        intervallCustomer = Number(formData.get("kundenIntervall"));
         let form = document.querySelector("form");
         let body = document.querySelector("body");
         body.removeChild(form);
         let canvas = document.querySelector("canvas");
         canvas.classList.remove("hidden");
+        window.setInterval(createCustomer, intervallCustomer * 1000);
     }
     function drawRestaurant() {
         //white bg canvas
@@ -130,6 +141,7 @@ var Abschlussarbeit;
         lahmacunImg.addEventListener("pointerup", function () { clickFood("Lahmacun"); });
         doenerImg.addEventListener("pointerup", function () { clickFood("Döner"); });
         yufkaImg.addEventListener("pointerup", function () { clickFood("Yufka"); });
+        restaurantImgData = Abschlussarbeit.crc2.getImageData(0, 0, Abschlussarbeit.crc2.canvas.width, Abschlussarbeit.crc2.canvas.height);
     }
     function clickIngredient(_event) {
         let id = _event.target;
@@ -165,11 +177,12 @@ var Abschlussarbeit;
             onionBar.draw();
             choosenIngredients.push("Zwiebel");
         }
+        checkOrder();
     }
     function getSettingData() {
         formData = new FormData(document.forms[0]);
         let anzahlMA;
-        let intervallCustomer;
+        // let intervallCustomer: number;
         let capIngredients;
         let capStock;
         let energyMA;
@@ -179,7 +192,7 @@ var Abschlussarbeit;
         // let cabbage: number;
         // let tomato: number;
         anzahlMA = Number(formData.get("mitarbeierzahl"));
-        intervallCustomer = Number(formData.get("kundenIntervall"));
+        // intervallCustomer = Number(formData.get("kundenIntervall"));
         capIngredients = Number(formData.get("kapazitätTheke"));
         capStock = Number(formData.get("kapazitätRohmaterial"));
         energyMA = Number(formData.get("Energie"));
@@ -222,7 +235,7 @@ var Abschlussarbeit;
         onionBtn.addEventListener("pointerup", clickIngredient);
         createEmployees(anzahlMA);
         drawController();
-        createOrder();
+        // createOrder();
     }
     function createEmployees(nEmployees) {
         formData = new FormData(document.forms[0]);
@@ -232,47 +245,64 @@ var Abschlussarbeit;
             let employee = new Abschlussarbeit.Employee(taskPositions[i], energyMA);
             employees.push(employee);
         }
-        // console.log();
+    }
+    function createCustomer() {
+        let rndmPos = Math.floor(Math.random() * 800);
+        customer = new Abschlussarbeit.Customer(new Abschlussarbeit.Vector(rndmPos, 550), 100);
+        customerArray.push(customer);
+        customer.order();
+        orderText.innerHTML = customerArray[0].completeOrder.toString();
+        // createOrder();
     }
     function update() {
+        Abschlussarbeit.crc2.putImageData(restaurantImgData, 0, 0);
         for (let i = 0; i < employees.length; i++) {
             employees[i].draw();
             employees[i].updateMood();
         }
-        customer = new Abschlussarbeit.Customer(new Abschlussarbeit.Vector(50, 500), 100);
-        customer.draw();
-        customer.move(1 / 100);
-        checkOrder();
+        for (let i = 0; i < customerArray.length; i++) {
+            customerArray[i].draw();
+            customerArray[i].updateMood();
+        }
     }
-    function createOrder() {
-        let body = document.querySelector("body");
-        let food;
-        food = allFood[rndmNumFood];
-        allIngredients.splice(rndmNumIngredient);
-        // console.log(food, allIngredients);
-        completeOrder.push(food);
-        Array.prototype.push.apply(completeOrder, allIngredients);
-        let orderArea;
-        orderArea = document.createElement("div");
-        orderArea.id = "orderDiv";
-        let orderText = document.createElement("p");
-        orderText.innerHTML = completeOrder.toString();
-        orderArea.appendChild(orderText);
-        body.appendChild(orderArea);
-    }
+    // function createOrder(): void {
+    // let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
+    // let food: string;
+    // food = allFood[rndmNumFood];
+    // allIngredients.splice(rndmNumIngredient);
+    // // console.log(food, allIngredients);
+    // completeOrder.push(food);
+    // Array.prototype.push.apply(completeOrder, allIngredients);
+    // let orderArea: HTMLDivElement;
+    // orderArea = document.createElement("div");
+    // orderArea.id = "orderDiv";
+    // let orderText: HTMLParagraphElement = document.createElement("p");
+    // orderText.innerHTML =  completeOrder.toString();
+    // orderArea.appendChild(orderText);
+    // body.appendChild(orderArea);
+    // }
     function checkOrder() {
         // completeOrder.sort();
         // choosenIngredients.sort();
-        console.log(completeOrder);
-        console.log(choosenIngredients);
-        if (completeOrder.length == choosenIngredients.length) {
-            for (let i = 0; i < completeOrder.length; i++)
-                if (completeOrder[i] == choosenIngredients[i]) {
-                    console.log("richtig");
+        // console.log(customerArray[0].completeOrder);
+        // console.log(choosenIngredients);
+        if (customerArray[0].completeOrder.length == choosenIngredients.length) {
+            for (let i = 0; i < customerArray[0].completeOrder.length; i++)
+                if (customerArray[0].completeOrder[i] == choosenIngredients[i]) {
+                    // console.log("richtig");
+                    console.log(customerArray[0].completeOrder);
+                    console.log(customerArray[0].completeOrder);
                 }
                 else {
                     console.log("false");
                 }
+            customerArray.splice(0);
+            customerArray[0].completeOrder.length = 0;
+            choosenIngredients.length = 0;
+            customerArray[0].completeOrder.splice(0);
+            let divInhalt;
+            divInhalt = document.getElementById("orderDiv");
+            orderText.innerHTML = "";
         }
         // else if (completeOrder.length == choosenIngredients.length && completeOrder != choosenIngredients) {
         //     console.log("this aint it");
@@ -324,6 +354,7 @@ var Abschlussarbeit;
         if (food == "Döner") {
             choosenIngredients.push("Döner");
         }
+        checkOrder();
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));
 //# sourceMappingURL=main.js.map

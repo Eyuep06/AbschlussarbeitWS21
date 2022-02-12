@@ -2,15 +2,20 @@ namespace Abschlussarbeit {
 
     export class Customer extends Human {
 
+        completeOrder: string[] = [];
         satisfaction: number;
 
         constructor(_position: Vector, _satisfaction: number) {
             super(_position);
             this.position = _position;
             this.satisfaction = _satisfaction;
-            this.velocity.forCustomer(100, 200);
+            // this.velocity.forCustomer(100, 200);
+            // super.draw();
+            // super.move(1 / 100);
+        }
+
+        draw(): void {
             super.draw();
-            super.move(1 / 100);
         }
 
 
@@ -31,6 +36,17 @@ namespace Abschlussarbeit {
             if (this.satisfaction <= 33) {
                 this.mood = MOOD.SAD;
             }
+        }
+
+        order(): void {
+            let food: string;
+            food = allFood[rndmNumFood];
+            allIngredients.splice(rndmNumIngredient);
+            // console.log(food, allIngredients);
+            this.completeOrder.push(food);
+            Array.prototype.push.apply(this.completeOrder, allIngredients);
+
+         
         }
 
 

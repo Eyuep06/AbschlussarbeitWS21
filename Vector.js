@@ -17,11 +17,6 @@ var Abschlussarbeit;
             this.x += _addEnd.x;
             this.y += _addEnd.y;
         }
-        forCustomer(_minLength, _maxLength) {
-            let length = _minLength + Math.random() * (_maxLength - _minLength);
-            this.set(Math.cos(1), Math.sin(0));
-            this.scale(length);
-        }
     }
     Abschlussarbeit.Vector = Vector;
 })(Abschlussarbeit || (Abschlussarbeit = {}));

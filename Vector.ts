@@ -22,12 +22,12 @@ namespace Abschlussarbeit {
             this.y += _addEnd.y;
         }
 
-        forCustomer(_minLength: number, _maxLength: number): void {
-            let length: number = _minLength + Math.random() * (_maxLength - _minLength); 
+        // forCustomer(_minLength: number, _maxLength: number): void {
+        //     let length: number = _minLength + Math.random() * (_maxLength - _minLength); 
     
-            this.set(Math.cos(1), Math.sin(0));
-            this.scale(length);
-        }
+        //     this.set(Math.cos(1), Math.sin(0));
+        //     this.scale(length);
+        // }
     }
 
 }
