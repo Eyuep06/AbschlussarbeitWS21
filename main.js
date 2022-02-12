@@ -4,6 +4,7 @@ var Abschlussarbeit;
     let formData;
     let employees = [];
     let taskPositions = [new Abschlussarbeit.Vector(50, 250), new Abschlussarbeit.Vector(200, 250), new Abschlussarbeit.Vector(450, 250), new Abschlussarbeit.Vector(550, 350)];
+    let customer;
     let allFood = ["Döner", "Yufka", "Lahmacun"];
     let allIngredients = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
     let completeOrder = [];
@@ -110,6 +111,21 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.moveTo(0, 500);
         Abschlussarbeit.crc2.lineTo(800, 500);
         Abschlussarbeit.crc2.stroke();
+        let doenerImg = document.createElement("img");
+        doenerImg.src = "assets/doener.png";
+        document.getElementById("canvasDiv")?.appendChild(doenerImg);
+        doenerImg.id = "img1";
+        let yufkaImg = document.createElement("img");
+        yufkaImg.src = "assets/yufka.png";
+        document.getElementById("canvasDiv")?.appendChild(yufkaImg);
+        yufkaImg.id = "img2";
+        let lahmacunImg = document.createElement("img");
+        lahmacunImg.src = "assets/lahmacun.png";
+        document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
+        lahmacunImg.id = "img3";
+        lahmacunImg.addEventListener("pointerup", function () { clickFood("Lahmacun"); });
+        doenerImg.addEventListener("pointerup", function () { clickFood("Döner"); });
+        yufkaImg.addEventListener("pointerup", function () { clickFood("Yufka"); });
     }
     function clickIngredient(_event) {
         let id = _event.target;
@@ -200,20 +216,9 @@ var Abschlussarbeit;
         cornBtn.addEventListener("pointerup", clickIngredient);
         tomatoBtn.addEventListener("pointerup", clickIngredient);
         onionBtn.addEventListener("pointerup", clickIngredient);
-        let doenerImg = document.createElement("img");
-        doenerImg.src = "assets/doener.png";
-        document.getElementById("canvasDiv")?.appendChild(doenerImg);
-        let yufkaImg = document.createElement("img");
-        yufkaImg.src = "assets/yufka.png";
-        document.getElementById("canvasDiv")?.appendChild(yufkaImg);
-        let lahmacunImg = document.createElement("img");
-        lahmacunImg.src = "assets/lahmacun.png";
-        document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
-        lahmacunImg.addEventListener("pointerup", function () { clickFood("Lahmacun"); });
-        doenerImg.addEventListener("pointerup", function () { clickFood("Döner"); });
-        yufkaImg.addEventListener("pointerup", function () { clickFood("Yufka"); });
         createEmployees(anzahlMA);
         drawController();
+        createOrder();
     }
     function createEmployees(nEmployees) {
         formData = new FormData(document.forms[0]);
@@ -229,10 +234,10 @@ var Abschlussarbeit;
         for (let i = 0; i < employees.length; i++) {
             employees[i].draw(taskPositions[i]);
             employees[i].updateMood();
-            // let testCustomer: Customer;
-            // testCustomer = new Customer(new Vector(50, 500), 100);
-            // testCustomer.draw(new Vector(50, 500));
-            // testCustomer.move(1 / 100);
+            // customer = new Customer(new Vector(50, 500), 100);
+            // customer.draw(new Vector(50, 500));
+            // customer.move(1 / 100);
+            checkOrder();
         }
     }
     function createOrder() {
@@ -243,7 +248,6 @@ var Abschlussarbeit;
         // console.log(food, allIngredients);
         completeOrder.push(food);
         Array.prototype.push.apply(completeOrder, allIngredients);
-        console.log(completeOrder);
         let orderArea;
         orderArea = document.createElement("div");
         orderArea.id = "orderDiv";
@@ -253,14 +257,22 @@ var Abschlussarbeit;
         body.appendChild(orderArea);
     }
     function checkOrder() {
-        completeOrder.sort();
-        choosenIngredients.sort();
-        if (completeOrder.length == checkOrder.length && completeOrder == choosenIngredients) {
-            console.log("richtig");
+        // completeOrder.sort();
+        // choosenIngredients.sort();
+        console.log(completeOrder);
+        console.log(choosenIngredients);
+        if (completeOrder.length == choosenIngredients.length) {
+            for (let i = 0; i < completeOrder.length; i++)
+                if (completeOrder[i] == choosenIngredients[i]) {
+                    console.log("richtig");
+                }
+                else {
+                    console.log("false");
+                }
         }
-        else if (completeOrder.length == checkOrder.length && completeOrder != choosenIngredients) {
-            console.log("this aint it");
-        }
+        // else if (completeOrder.length == choosenIngredients.length && completeOrder != choosenIngredients) {
+        //     console.log("this aint it");
+        // }
     }
     function drawController() {
         let employeesString = [];

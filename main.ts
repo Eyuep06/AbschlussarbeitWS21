@@ -4,6 +4,7 @@ namespace Abschlussarbeit {
     let employees: Employee[] = [];
     let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350)];
 
+    let customer: Customer;
 
 
     let allFood: string[] = ["Döner", "Yufka", "Lahmacun"];
@@ -127,6 +128,26 @@ namespace Abschlussarbeit {
         crc2.lineTo(800, 500);
 
         crc2.stroke();
+
+        let doenerImg: HTMLImageElement = document.createElement("img");
+        doenerImg.src = "assets/doener.png";
+        document.getElementById("canvasDiv")?.appendChild(doenerImg);
+        doenerImg.id = "img1";
+
+        let yufkaImg: HTMLImageElement = document.createElement("img");
+        yufkaImg.src = "assets/yufka.png";
+        document.getElementById("canvasDiv")?.appendChild(yufkaImg);
+        yufkaImg.id = "img2";
+
+        let lahmacunImg: HTMLImageElement = document.createElement("img");
+        lahmacunImg.src = "assets/lahmacun.png";
+        document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
+        lahmacunImg.id = "img3";
+
+        lahmacunImg.addEventListener("pointerup", function (): void { clickFood("Lahmacun"); });
+        doenerImg.addEventListener("pointerup", function (): void { clickFood("Döner"); });
+        yufkaImg.addEventListener("pointerup", function (): void { clickFood("Yufka"); });
+
     }
 
 
@@ -248,24 +269,10 @@ namespace Abschlussarbeit {
         onionBtn.addEventListener("pointerup", clickIngredient);
 
 
-        let doenerImg: HTMLImageElement = document.createElement("img");
-        doenerImg.src = "assets/doener.png";
-        document.getElementById("canvasDiv")?.appendChild(doenerImg);
-
-        let yufkaImg: HTMLImageElement = document.createElement("img");
-        yufkaImg.src = "assets/yufka.png";
-        document.getElementById("canvasDiv")?.appendChild(yufkaImg);
-
-        let lahmacunImg: HTMLImageElement = document.createElement("img");
-        lahmacunImg.src = "assets/lahmacun.png";
-        document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
-
-        lahmacunImg.addEventListener("pointerup", function (): void { clickFood("Lahmacun"); });
-        doenerImg.addEventListener("pointerup", function (): void { clickFood("Döner"); });
-        yufkaImg.addEventListener("pointerup", function (): void { clickFood("Yufka"); });
 
         createEmployees(anzahlMA);
         drawController();
+        createOrder();
 
     }
 
@@ -290,10 +297,13 @@ namespace Abschlussarbeit {
         for (let i: number = 0; i < employees.length; i++) {
             employees[i].draw(taskPositions[i]);
             employees[i].updateMood();
-            // let testCustomer: Customer;
-            // testCustomer = new Customer(new Vector(50, 500), 100);
-            // testCustomer.draw(new Vector(50, 500));
-            // testCustomer.move(1 / 100);
+            // customer = new Customer(new Vector(50, 500), 100);
+            // customer.draw(new Vector(50, 500));
+            // customer.move(1 / 100);
+
+            checkOrder();
+
+
         }
 
 
@@ -308,7 +318,6 @@ namespace Abschlussarbeit {
         // console.log(food, allIngredients);
         completeOrder.push(food);
         Array.prototype.push.apply(completeOrder, allIngredients);
-        console.log(completeOrder);
 
         let orderArea: HTMLDivElement;
         orderArea = document.createElement("div");
@@ -323,19 +332,32 @@ namespace Abschlussarbeit {
 
 
 
+
     }
 
     function checkOrder(): void {
-        completeOrder.sort();
-        choosenIngredients.sort();
-        if (completeOrder.length == checkOrder.length && completeOrder == choosenIngredients) {
-            console.log("richtig");
+        // completeOrder.sort();
+        // choosenIngredients.sort();
+        console.log(completeOrder);
+        console.log(choosenIngredients);
+
+        if (completeOrder.length == choosenIngredients.length) {
+
+            for (let i: number = 0; i < completeOrder.length; i++)
+                if (completeOrder[i] == choosenIngredients[i]) {
+                    console.log("richtig");
+                }
+
+                else {
+                    console.log("false");
+
+                }
         }
 
-        else if (completeOrder.length == checkOrder.length && completeOrder != choosenIngredients) {
-            console.log("this aint it");
+        // else if (completeOrder.length == choosenIngredients.length && completeOrder != choosenIngredients) {
+        //     console.log("this aint it");
 
-        }
+        // }
     }
 
 
@@ -405,6 +427,8 @@ namespace Abschlussarbeit {
 
 
     }
+
+
 
 
 }

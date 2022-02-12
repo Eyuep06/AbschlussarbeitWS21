@@ -8,7 +8,7 @@ namespace Abschlussarbeit {
             super(_position);
             this.position = _position;
             this.energy = _energy;
-            super.draw(_position);
+            super.draw();
             this.position = (_position);
 
 

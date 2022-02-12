@@ -54,37 +54,36 @@ h1 {
 }
 
 #button0 {
-    left: -505px;
+    left: -802px;
     bottom: 103px
 }
 
 #button1 {
-    left: -505px;
-    bottom: 103px;
+    left: 402px;
+    bottom: 203px;
 }
 
 #button2 {
-    left: -505px;
-    bottom: 103px;
+    left: 402px;
+    bottom: 203px;
 }
 
 #button3 {
-    left: -505px;
-    bottom: 103px;
+    left: 402px;
+    bottom: 203px;
 }
 
 #button4 {
-    left: 700px;
+    left: 400px;
     bottom: 204px;
 }
 
 
 
-
-img {
+#img1, #img2, #img3 {
     position: relative;
-    left: -98px;
-    bottom: 204px;
+    left: -803px;
+    bottom: 101px;
     margin-right: 1px;
     cursor: pointer;
 }

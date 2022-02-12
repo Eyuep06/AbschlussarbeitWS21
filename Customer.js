@@ -3,11 +3,11 @@ var Abschlussarbeit;
 (function (Abschlussarbeit) {
     class Customer extends Abschlussarbeit.Human {
         constructor(_position, _satisfaction) {
-            super(new Abschlussarbeit.Vector(50, 500));
+            super(_position);
             this.position = _position;
             this.satisfaction = _satisfaction;
             this.velocity.forCustomer(100, 200);
-            super.draw(this.position);
+            super.draw();
             super.move(1 / 100);
         }
         updateMood() {

@@ -5,11 +5,11 @@ namespace Abschlussarbeit {
         satisfaction: number;
 
         constructor(_position: Vector, _satisfaction: number) {
-            super(new Vector(50, 500));
+            super(_position);
             this.position = _position;
             this.satisfaction = _satisfaction;
             this.velocity.forCustomer(100, 200);
-            super.draw(this.position);
+            super.draw();
             super.move(1 / 100);
         }
 
