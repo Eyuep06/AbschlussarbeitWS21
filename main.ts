@@ -11,16 +11,9 @@ namespace Abschlussarbeit {
 
     let restaurantImgData: ImageData;
 
-    export let allFood: string[] = ["Döner", "Yufka", "Lahmacun"];
-    export let allIngredients: string[] = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
 
-    export let rndmNumFood: number;
-    export let rndmNumIngredient: number;
     let choosenIngredients: string[] = [];
-
-    rndmNumFood = Math.floor(Math.random() * 3);
-    rndmNumIngredient = Math.floor(Math.random() * 5);
-
+    
     let tomatoBar: Tomato;
     let cabbageBar: Cabbage;
     let cornBar: Corn;
@@ -348,6 +341,11 @@ namespace Abschlussarbeit {
 
     function update(): void {
         crc2.putImageData(restaurantImgData, 0, 0);
+        cabbageBar.draw();
+        cornBar.draw();
+        lettuceBar.draw();
+        onionBar.draw();
+
 
         for (let i: number = 0; i < employees.length; i++) {
             employees[i].draw();

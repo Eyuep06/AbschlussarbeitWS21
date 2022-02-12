@@ -4,6 +4,10 @@ var Abschlussarbeit;
     class Customer extends Abschlussarbeit.Human {
         constructor(_position, _satisfaction) {
             super(_position);
+            this.allFood = ["Döner", "Yufka", "Lahmacun"];
+            this.allIngredients = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
+            this.rndmNumFood = Math.floor(Math.random() * 3);
+            this.rndmNumIngredient = Math.floor(Math.random() * 5);
             this.completeOrder = [];
             this.position = _position;
             this.satisfaction = _satisfaction;
@@ -28,11 +32,11 @@ var Abschlussarbeit;
         }
         order() {
             let food;
-            food = Abschlussarbeit.allFood[Abschlussarbeit.rndmNumFood];
-            Abschlussarbeit.allIngredients.splice(Abschlussarbeit.rndmNumIngredient);
+            food = this.allFood[this.rndmNumFood];
+            this.allIngredients.splice(this.rndmNumIngredient);
             // console.log(food, allIngredients);
             this.completeOrder.push(food);
-            Array.prototype.push.apply(this.completeOrder, Abschlussarbeit.allIngredients);
+            Array.prototype.push.apply(this.completeOrder, this.allIngredients);
         }
     }
     Abschlussarbeit.Customer = Customer;

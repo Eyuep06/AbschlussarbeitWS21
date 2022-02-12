@@ -2,6 +2,12 @@ namespace Abschlussarbeit {
 
     export class Customer extends Human {
 
+        allFood: string[] = ["Döner", "Yufka", "Lahmacun"];
+        allIngredients: string[] = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
+
+        rndmNumFood: number = Math.floor(Math.random() * 3);
+        rndmNumIngredient: number = Math.floor(Math.random() * 5);
+
         completeOrder: string[] = [];
         satisfaction: number;
 
@@ -40,13 +46,13 @@ namespace Abschlussarbeit {
 
         order(): void {
             let food: string;
-            food = allFood[rndmNumFood];
-            allIngredients.splice(rndmNumIngredient);
+            food = this.allFood[this.rndmNumFood];
+            this.allIngredients.splice(this.rndmNumIngredient);
             // console.log(food, allIngredients);
             this.completeOrder.push(food);
-            Array.prototype.push.apply(this.completeOrder, allIngredients);
+            Array.prototype.push.apply(this.completeOrder, this.allIngredients);
 
-         
+
         }
 
 

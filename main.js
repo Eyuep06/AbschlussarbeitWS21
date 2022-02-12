@@ -8,11 +8,7 @@ var Abschlussarbeit;
     let customer;
     let orderText;
     let restaurantImgData;
-    Abschlussarbeit.allFood = ["Döner", "Yufka", "Lahmacun"];
-    Abschlussarbeit.allIngredients = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
     let choosenIngredients = [];
-    Abschlussarbeit.rndmNumFood = Math.floor(Math.random() * 3);
-    Abschlussarbeit.rndmNumIngredient = Math.floor(Math.random() * 5);
     let tomatoBar;
     let cabbageBar;
     let cornBar;
@@ -256,6 +252,10 @@ var Abschlussarbeit;
     }
     function update() {
         Abschlussarbeit.crc2.putImageData(restaurantImgData, 0, 0);
+        cabbageBar.draw();
+        cornBar.draw();
+        lettuceBar.draw();
+        onionBar.draw();
         for (let i = 0; i < employees.length; i++) {
             employees[i].draw();
             employees[i].updateMood();
