@@ -13,7 +13,7 @@ namespace Abschlussarbeit {
 
 
     let choosenIngredients: string[] = [];
-    
+
     let tomatoBar: Tomato;
     let cabbageBar: Cabbage;
     let cornBar: Corn;
@@ -54,7 +54,7 @@ namespace Abschlussarbeit {
         let orderArea: HTMLDivElement;
         orderArea = document.createElement("div");
         orderArea.id = "orderDiv";
-        
+
 
 
         orderArea.appendChild(orderText);
@@ -335,6 +335,7 @@ namespace Abschlussarbeit {
         orderText.innerHTML = customerArray[0].completeOrder.toString();
 
 
+
         // createOrder();
 
     }
@@ -399,9 +400,11 @@ namespace Abschlussarbeit {
 
             for (let i: number = 0; i < customerArray[0].completeOrder.length; i++)
                 if (customerArray[0].completeOrder[i] == choosenIngredients[i]) {
-                    // console.log("richtig");
-                    console.log(customerArray[0].completeOrder);
-                    console.log(customerArray[0].completeOrder);
+                    // // console.log("richtig");
+                    // console.log(customerArray[0].completeOrder);
+                    // console.log(customerArray[0].completeOrder);
+                    // orderText.innerHTML = customerArray[0].completeOrder.toString();
+
 
                 }
 
@@ -409,12 +412,16 @@ namespace Abschlussarbeit {
                     console.log("false");
 
                 }
+            orderText.innerHTML = "";
             customerArray.splice(0, 1);
             choosenIngredients.length = 0;
             customerArray[0].completeOrder.splice(0);
+            orderText.innerHTML = customerArray[0].completeOrder.toString();
+
             let divInhalt: HTMLDivElement;
             divInhalt = <HTMLDivElement>document.getElementById("orderDiv");
-            orderText.innerHTML = "";
+
+
         }
 
         // else if (completeOrder.length == choosenIngredients.length && completeOrder != choosenIngredients) {

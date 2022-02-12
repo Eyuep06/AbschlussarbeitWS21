@@ -289,19 +289,21 @@ var Abschlussarbeit;
         if (customerArray[0].completeOrder.length == choosenIngredients.length) {
             for (let i = 0; i < customerArray[0].completeOrder.length; i++)
                 if (customerArray[0].completeOrder[i] == choosenIngredients[i]) {
-                    // console.log("richtig");
-                    console.log(customerArray[0].completeOrder);
-                    console.log(customerArray[0].completeOrder);
+                    // // console.log("richtig");
+                    // console.log(customerArray[0].completeOrder);
+                    // console.log(customerArray[0].completeOrder);
+                    // orderText.innerHTML = customerArray[0].completeOrder.toString();
                 }
                 else {
                     console.log("false");
                 }
+            orderText.innerHTML = "";
             customerArray.splice(0, 1);
             choosenIngredients.length = 0;
             customerArray[0].completeOrder.splice(0);
+            orderText.innerHTML = customerArray[0].completeOrder.toString();
             let divInhalt;
             divInhalt = document.getElementById("orderDiv");
-            orderText.innerHTML = "";
         }
         // else if (completeOrder.length == choosenIngredients.length && completeOrder != choosenIngredients) {
         //     console.log("this aint it");
