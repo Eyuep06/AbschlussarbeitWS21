@@ -296,8 +296,7 @@ var Abschlussarbeit;
                 else {
                     console.log("false");
                 }
-            customerArray.splice(0);
-            customerArray[0].completeOrder.length = 0;
+            customerArray.splice(0, 1);
             choosenIngredients.length = 0;
             customerArray[0].completeOrder.splice(0);
             let divInhalt;
