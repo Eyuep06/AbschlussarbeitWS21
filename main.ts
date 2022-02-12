@@ -295,17 +295,16 @@ namespace Abschlussarbeit {
 
     function update(): void {
         for (let i: number = 0; i < employees.length; i++) {
-            employees[i].draw(taskPositions[i]);
+            employees[i].draw();
             employees[i].updateMood();
-            // customer = new Customer(new Vector(50, 500), 100);
-            // customer.draw(new Vector(50, 500));
-            // customer.move(1 / 100);
-
-            checkOrder();
-
-
+           
         }
 
+        customer = new Customer(new Vector(50, 500), 100);
+        customer.draw();
+        customer.move(1 / 100);
+
+        checkOrder();
 
 
     }

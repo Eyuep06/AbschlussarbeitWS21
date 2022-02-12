@@ -232,13 +232,13 @@ var Abschlussarbeit;
     }
     function update() {
         for (let i = 0; i < employees.length; i++) {
-            employees[i].draw(taskPositions[i]);
+            employees[i].draw();
             employees[i].updateMood();
-            // customer = new Customer(new Vector(50, 500), 100);
-            // customer.draw(new Vector(50, 500));
-            // customer.move(1 / 100);
-            checkOrder();
         }
+        customer = new Abschlussarbeit.Customer(new Abschlussarbeit.Vector(50, 500), 100);
+        customer.draw();
+        customer.move(1 / 100);
+        checkOrder();
     }
     function createOrder() {
         let body = document.querySelector("body");
