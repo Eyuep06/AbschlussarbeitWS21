@@ -30,6 +30,7 @@ var Abschlussarbeit;
         TASK[TASK["CHANGE"] = 1] = "CHANGE";
         TASK[TASK["PREPARE"] = 2] = "PREPARE";
         TASK[TASK["ORDER"] = 3] = "ORDER";
+        TASK[TASK["BREAK"] = 4] = "BREAK";
     })(TASK = Abschlussarbeit.TASK || (Abschlussarbeit.TASK = {}));
     window.addEventListener("load", hdndlLoad);
     function hdndlLoad(_event) {
@@ -263,6 +264,7 @@ var Abschlussarbeit;
     }
     function drawController() {
         let employeesString = [];
+        let tasks = ["Theke", "Bestellung", "Zubereitung", "Füllen", "Pause"];
         let body = document.querySelector("body");
         let controllerArea;
         controllerArea = document.createElement("div");
@@ -270,18 +272,30 @@ var Abschlussarbeit;
         for (let i = 1; i < employees.length + 1; i++) {
             employeesString.push("Mitarbeiter" + i);
         }
-        // let employeeSelection: HTMLSelectElement = document.createElement("select");
-        // employeeSelection.innerHTML = "";
         body.appendChild(controllerArea);
         let selectList = document.createElement("select");
-        selectList.id = "mySelect";
+        let selelctListTask = document.createElement("select");
+        let controllerOkBtn = document.createElement("button");
+        controllerOkBtn.id = "controllerOkBtn";
+        selelctListTask.id = "selectTask";
+        controllerOkBtn.innerHTML = "OK";
+        selectList.id = "selectEmployee";
         controllerArea.appendChild(selectList);
+        controllerArea.appendChild(selelctListTask);
+        controllerArea.appendChild(controllerOkBtn);
         //Create and append the options
         for (let i = 0; i < employees.length; i++) {
             let option = document.createElement("option");
             option.value = employeesString[i];
             option.text = employeesString[i];
             selectList.appendChild(option);
+        }
+        //Create and append the options
+        for (let i = 0; i < tasks.length; i++) {
+            let option = document.createElement("option");
+            option.value = tasks[i];
+            option.text = tasks[i];
+            selelctListTask.appendChild(option);
         }
     }
     function clickFood(food) {

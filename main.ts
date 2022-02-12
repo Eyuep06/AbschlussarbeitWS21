@@ -32,7 +32,8 @@ namespace Abschlussarbeit {
         BAR,
         CHANGE,
         PREPARE,
-        ORDER
+        ORDER,
+        BREAK
     }
 
     window.addEventListener("load", hdndlLoad);
@@ -340,6 +341,7 @@ namespace Abschlussarbeit {
 
     function drawController(): void {
         let employeesString: string[] = [];
+        let tasks: string[] = ["Theke", "Bestellung", "Zubereitung", "Füllen", "Pause"];
         let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
         let controllerArea: HTMLDivElement;
         controllerArea = document.createElement("div");
@@ -348,13 +350,21 @@ namespace Abschlussarbeit {
             employeesString.push("Mitarbeiter" + i);
         }
 
-        // let employeeSelection: HTMLSelectElement = document.createElement("select");
-        // employeeSelection.innerHTML = "";
+
 
         body.appendChild(controllerArea);
         let selectList: HTMLSelectElement = document.createElement("select");
-        selectList.id = "mySelect";
+        let selelctListTask: HTMLSelectElement = document.createElement("select");
+        let controllerOkBtn: HTMLButtonElement = document.createElement("button");
+        controllerOkBtn.id = "controllerOkBtn";
+
+        selelctListTask.id = "selectTask";
+        controllerOkBtn.innerHTML = "OK";
+
+        selectList.id = "selectEmployee";
         controllerArea.appendChild(selectList);
+        controllerArea.appendChild(selelctListTask);
+        controllerArea.appendChild(controllerOkBtn);
 
         //Create and append the options
         for (let i: number = 0; i < employees.length; i++) {
@@ -364,23 +374,33 @@ namespace Abschlussarbeit {
             selectList.appendChild(option);
         }
 
+        //Create and append the options
+        for (let i: number = 0; i < tasks.length; i++) {
+            let option: HTMLOptionElement = document.createElement("option");
+            option.value = tasks[i];
+            option.text = tasks[i];
+            selelctListTask.appendChild(option);
+        }
+
+
+
     }
 
     function clickFood(food: string): void {
 
         if (food == "Lahmacun") {
             choosenIngredients.push("Lahmacun");
-            
+
         }
 
         if (food == "Yufka") {
             choosenIngredients.push("Yufka");
-            
+
         }
 
         if (food == "Döner") {
             choosenIngredients.push("Döner");
-            
+
         }
 
 
