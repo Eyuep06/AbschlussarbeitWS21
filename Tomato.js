@@ -2,12 +2,10 @@
 var Abschlussarbeit;
 (function (Abschlussarbeit) {
     class Tomato extends Abschlussarbeit.Ingredient {
-        constructor(_amountBar, _amountStock, _ownAmount) {
-            super("red", new Abschlussarbeit.Vector(600, 400), _amountBar, _amountStock, _ownAmount);
-            this.ownAmount = this.amountBar;
+        constructor(_amountBar, _amountStock) {
+            super("red", new Abschlussarbeit.Vector(600, 400), _amountBar, _amountStock);
             this.amountBar = _amountBar;
             this.amountStock = _amountStock;
-            this.ownAmount = _amountStock;
         }
         draw() {
             Abschlussarbeit.crc2.fillStyle = this.color;

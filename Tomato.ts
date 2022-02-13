@@ -1,12 +1,11 @@
 namespace Abschlussarbeit {
     export class Tomato extends Ingredient {
 
-        constructor(_amountBar: number, _amountStock: number, _ownAmount: number) {
-            super("red", new Vector(600, 400), _amountBar, _amountStock, _ownAmount);
-            this.ownAmount = this.amountBar;
+        constructor(_amountBar: number, _amountStock: number) {
+            super("red", new Vector(600, 400), _amountBar, _amountStock);
             this.amountBar = _amountBar;
             this.amountStock = _amountStock;
-            this.ownAmount = _amountStock;
+
 
         }
 

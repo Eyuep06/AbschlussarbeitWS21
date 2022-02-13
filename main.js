@@ -5,6 +5,8 @@ var Abschlussarbeit;
     let employees = [];
     let customerArray = [];
     let taskPositions = [new Abschlussarbeit.Vector(50, 250), new Abschlussarbeit.Vector(200, 250), new Abschlussarbeit.Vector(450, 250), new Abschlussarbeit.Vector(550, 350), new Abschlussarbeit.Vector(1000, 650), new Abschlussarbeit.Vector(1000, 650), new Abschlussarbeit.Vector(1000, 650)];
+    let energyMA;
+    let fillBarArray = [""];
     let customer;
     let orderText;
     let restaurantImgData;
@@ -44,10 +46,8 @@ var Abschlussarbeit;
         body.appendChild(orderArea);
         drawRestaurant();
         window.setInterval(update, 1000);
-        //createOrder();
     }
     function startGame() {
-        //formData = new FormData(document.forms[0]);
         getSettingData();
         formData = new FormData(document.forms[0]);
         let intervallCustomer;
@@ -137,6 +137,27 @@ var Abschlussarbeit;
         lahmacunImg.addEventListener("pointerup", function () { clickFood("Lahmacun"); });
         doenerImg.addEventListener("pointerup", function () { clickFood("Döner"); });
         yufkaImg.addEventListener("pointerup", function () { clickFood("Yufka"); });
+        phoneImg.addEventListener("pointerup", phonecall);
+        for (let i = 0; i < 5; i++) {
+            let button = document.createElement("button");
+            document.getElementById("canvasDiv")?.appendChild(button);
+            button.id = "buttonStock" + i;
+        }
+        let cabbageBtn;
+        cabbageBtn = document.getElementById("buttonStock0");
+        let lettuceBtn;
+        lettuceBtn = document.getElementById("buttonStock1");
+        let cornBtn;
+        cornBtn = document.getElementById("buttonStock2");
+        let tomatoBtn;
+        tomatoBtn = document.getElementById("buttonStock3");
+        let onionBtn;
+        onionBtn = document.getElementById("buttonStock4");
+        cabbageBtn.addEventListener("pointerup", clickIngredientStock);
+        lettuceBtn.addEventListener("pointerup", clickIngredientStock);
+        cornBtn.addEventListener("pointerup", clickIngredientStock);
+        tomatoBtn.addEventListener("pointerup", clickIngredientStock);
+        onionBtn.addEventListener("pointerup", clickIngredientStock);
         restaurantImgData = Abschlussarbeit.crc2.getImageData(0, 0, Abschlussarbeit.crc2.canvas.width, Abschlussarbeit.crc2.canvas.height);
     }
     function clickIngredient(_event) {
@@ -163,8 +184,12 @@ var Abschlussarbeit;
             cornBar.draw();
             choosenIngredients.push("Mais");
         }
-        if (idString == "button3") {
-            //hier tomate
+        if (idString == "button3" && tomatoBar.amountBar > 0) {
+            Abschlussarbeit.crc2.fillStyle = "white";
+            Abschlussarbeit.crc2.fillRect(501, 401, 98, 98);
+            tomatoBar.amountBar = tomatoBar.amountBar - 25;
+            tomatoBar.draw();
+            choosenIngredients.push("Tomaten");
         }
         if (idString == "button4" && onionBar.amountBar > 0) {
             Abschlussarbeit.crc2.fillStyle = "white";
@@ -178,28 +203,12 @@ var Abschlussarbeit;
     function getSettingData() {
         formData = new FormData(document.forms[0]);
         let anzahlMA;
-        // let intervallCustomer: number;
         let capIngredients;
         let capStock;
-        let energyMA;
-        // let corn: number;
-        // let lettuce: number;
-        // let onion: number;
-        // let cabbage: number;
-        // let tomato: number;
         anzahlMA = Number(formData.get("mitarbeierzahl"));
-        // intervallCustomer = Number(formData.get("kundenIntervall"));
         capIngredients = Number(formData.get("kapazitätTheke"));
         capStock = Number(formData.get("kapazitätRohmaterial"));
         energyMA = Number(formData.get("Energie"));
-        // corn = capIngredients;
-        // lettuce = capIngredients;
-        // onion = capIngredients;
-        // cabbage = capIngredients;
-        // tomato = capIngredients;
-        // wenn auf den button bei einer Zutat gedrückt wird, soll zb corn = corn - 25
-        // tomatoBar = new Tomato(capIngredients, capStock, tomato);
-        // tomatoBar.draw();
         cabbageBar = new Abschlussarbeit.Cabbage(capIngredients, capStock);
         cabbageBar.draw();
         cornBar = new Abschlussarbeit.Corn(capIngredients, capStock);
@@ -208,6 +217,8 @@ var Abschlussarbeit;
         lettuceBar.draw();
         onionBar = new Abschlussarbeit.Onion(capIngredients, capStock);
         onionBar.draw();
+        tomatoBar = new Abschlussarbeit.Tomato(capIngredients, capStock);
+        tomatoBar.draw();
         //create Buttons for Ingredients
         for (let i = 0; i < 5; i++) {
             let button = document.createElement("button");
@@ -235,7 +246,6 @@ var Abschlussarbeit;
     }
     function createEmployees(nEmployees) {
         formData = new FormData(document.forms[0]);
-        let energyMA;
         energyMA = Number(formData.get("Energie"));
         for (let i = 0; i < nEmployees; i++) {
             let employee = new Abschlussarbeit.Employee(taskPositions[i], energyMA);
@@ -256,6 +266,10 @@ var Abschlussarbeit;
         cornBar.draw();
         lettuceBar.draw();
         onionBar.draw();
+        tomatoBar.draw();
+        Abschlussarbeit.crc2.font = "30px Arial";
+        Abschlussarbeit.crc2.fillStyle = "red";
+        Abschlussarbeit.crc2.fillText(fillBarArray[0], 110, 130);
         for (let i = 0; i < employees.length; i++) {
             employees[i].draw();
             employees[i].updateMood();
@@ -265,22 +279,6 @@ var Abschlussarbeit;
             customerArray[i].updateMood();
         }
     }
-    // function createOrder(): void {
-    // let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
-    // let food: string;
-    // food = allFood[rndmNumFood];
-    // allIngredients.splice(rndmNumIngredient);
-    // // console.log(food, allIngredients);
-    // completeOrder.push(food);
-    // Array.prototype.push.apply(completeOrder, allIngredients);
-    // let orderArea: HTMLDivElement;
-    // orderArea = document.createElement("div");
-    // orderArea.id = "orderDiv";
-    // let orderText: HTMLParagraphElement = document.createElement("p");
-    // orderText.innerHTML =  completeOrder.toString();
-    // orderArea.appendChild(orderText);
-    // body.appendChild(orderArea);
-    // }
     function checkOrder() {
         // completeOrder.sort();
         // choosenIngredients.sort();
@@ -356,6 +354,61 @@ var Abschlussarbeit;
             choosenIngredients.push("Döner");
         }
         checkOrder();
+    }
+    function phonecall() {
+        setTimeout(preparePreparebtn, 5000);
+    }
+    function preparePreparebtn() {
+        fillBarArray.splice(0, 1);
+        fillBarArray.push("Zubereiten");
+        Abschlussarbeit.crc2.font = "30px Arial";
+        Abschlussarbeit.crc2.fillStyle = "red";
+        Abschlussarbeit.crc2.fillText(fillBarArray[0], 110, 130);
+        let button = document.createElement("button");
+        document.getElementById("canvasDiv")?.appendChild(button);
+        button.id = "buttonFuellTheke";
+        button.addEventListener("pointerup", preparation);
+    }
+    function preparation() {
+        if (cabbageBar.amountStock < 100) {
+            cabbageBar.amountStock = cabbageBar.amountStock + 25;
+        }
+        if (onionBar.amountStock < 100) {
+            onionBar.amountStock = onionBar.amountStock + 25;
+        }
+        if (lettuceBar.amountStock < 100) {
+            lettuceBar.amountStock = lettuceBar.amountStock + 25;
+        }
+        if (cornBar.amountStock < 100) {
+            cornBar.amountStock = cornBar.amountStock + 25;
+        }
+        if (tomatoBar.amountStock < 100) {
+            tomatoBar.amountStock = tomatoBar.amountStock + 25;
+        }
+    }
+    function clickIngredientStock(_event) {
+        let id = _event.target;
+        let idString = id.id;
+        if (idString == "buttonStock0" && cabbageBar.amountBar < 100) {
+            cabbageBar.amountBar = cabbageBar.amountBar + 25;
+            cabbageBar.amountStock = cabbageBar.amountStock - 25;
+        }
+        if (idString == "buttonStock1" && lettuceBar.amountBar < 100) {
+            lettuceBar.amountBar = lettuceBar.amountBar + 25;
+            lettuceBar.amountStock = lettuceBar.amountStock - 25;
+        }
+        if (idString == "buttonStock2" && cornBar.amountBar < 100) {
+            cornBar.amountBar = cornBar.amountBar + 25;
+            cornBar.amountStock = cornBar.amountStock - 25;
+        }
+        if (idString == "buttonStock3" && tomatoBar.amountBar < 100) {
+            tomatoBar.amountBar = tomatoBar.amountBar + 25;
+            tomatoBar.amountStock = tomatoBar.amountStock - 25;
+        }
+        if (idString == "buttonStock4" && onionBar.amountBar < 100) {
+            onionBar.amountBar = onionBar.amountBar + 25;
+            onionBar.amountStock = onionBar.amountStock - 25;
+        }
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));
 //# sourceMappingURL=main.js.map

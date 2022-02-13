@@ -4,6 +4,10 @@ namespace Abschlussarbeit {
     let employees: Employee[] = [];
     let customerArray: Customer[] = [];
     let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350), new Vector(1000, 650), new Vector(1000, 650), new Vector(1000, 650)];
+    let energyMA: number;
+
+
+    let fillBarArray: string[] = [""];
 
     let customer: Customer;
 
@@ -65,12 +69,11 @@ namespace Abschlussarbeit {
         drawRestaurant();
 
         window.setInterval(update, 1000);
-        //createOrder();
+
     }
 
 
     function startGame(): void {
-        //formData = new FormData(document.forms[0]);
         getSettingData();
 
         formData = new FormData(document.forms[0]);
@@ -175,6 +178,35 @@ namespace Abschlussarbeit {
         lahmacunImg.addEventListener("pointerup", function (): void { clickFood("Lahmacun"); });
         doenerImg.addEventListener("pointerup", function (): void { clickFood("Döner"); });
         yufkaImg.addEventListener("pointerup", function (): void { clickFood("Yufka"); });
+        phoneImg.addEventListener("pointerup", phonecall);
+
+
+        for (let i: number = 0; i < 5; i++) {
+            let button: HTMLButtonElement = document.createElement("button");
+            document.getElementById("canvasDiv")?.appendChild(button);
+            button.id = "buttonStock" + i;
+        }
+
+        let cabbageBtn: HTMLButtonElement;
+        cabbageBtn = <HTMLButtonElement>document.getElementById("buttonStock0");
+
+        let lettuceBtn: HTMLButtonElement;
+        lettuceBtn = <HTMLButtonElement>document.getElementById("buttonStock1");
+
+        let cornBtn: HTMLButtonElement;
+        cornBtn = <HTMLButtonElement>document.getElementById("buttonStock2");
+
+        let tomatoBtn: HTMLButtonElement;
+        tomatoBtn = <HTMLButtonElement>document.getElementById("buttonStock3");
+
+        let onionBtn: HTMLButtonElement;
+        onionBtn = <HTMLButtonElement>document.getElementById("buttonStock4");
+
+        cabbageBtn.addEventListener("pointerup", clickIngredientStock);
+        lettuceBtn.addEventListener("pointerup", clickIngredientStock);
+        cornBtn.addEventListener("pointerup", clickIngredientStock);
+        tomatoBtn.addEventListener("pointerup", clickIngredientStock);
+        onionBtn.addEventListener("pointerup", clickIngredientStock);
 
 
 
@@ -211,8 +243,12 @@ namespace Abschlussarbeit {
             choosenIngredients.push("Mais");
         }
 
-        if (idString == "button3") {
-            //hier tomate
+        if (idString == "button3" && tomatoBar.amountBar > 0) {
+            crc2.fillStyle = "white";
+            crc2.fillRect(501, 401, 98, 98);
+            tomatoBar.amountBar = tomatoBar.amountBar - 25;
+            tomatoBar.draw();
+            choosenIngredients.push("Tomaten");
         }
 
         if (idString == "button4" && onionBar.amountBar > 0) {
@@ -231,34 +267,16 @@ namespace Abschlussarbeit {
     function getSettingData(): void {
         formData = new FormData(document.forms[0]);
         let anzahlMA: number;
-        // let intervallCustomer: number;
         let capIngredients: number;
         let capStock: number;
-        let energyMA: number;
-
-        // let corn: number;
-        // let lettuce: number;
-        // let onion: number;
-        // let cabbage: number;
-        // let tomato: number;
 
 
         anzahlMA = Number(formData.get("mitarbeierzahl"));
-        // intervallCustomer = Number(formData.get("kundenIntervall"));
         capIngredients = Number(formData.get("kapazitätTheke"));
         capStock = Number(formData.get("kapazitätRohmaterial"));
         energyMA = Number(formData.get("Energie"));
 
-        // corn = capIngredients;
-        // lettuce = capIngredients;
-        // onion = capIngredients;
-        // cabbage = capIngredients;
-        // tomato = capIngredients;
 
-        // wenn auf den button bei einer Zutat gedrückt wird, soll zb corn = corn - 25
-
-        // tomatoBar = new Tomato(capIngredients, capStock, tomato);
-        // tomatoBar.draw();
 
         cabbageBar = new Cabbage(capIngredients, capStock);
         cabbageBar.draw();
@@ -271,6 +289,9 @@ namespace Abschlussarbeit {
 
         onionBar = new Onion(capIngredients, capStock);
         onionBar.draw();
+
+        tomatoBar = new Tomato(capIngredients, capStock);
+        tomatoBar.draw();
 
 
 
@@ -314,7 +335,6 @@ namespace Abschlussarbeit {
     function createEmployees(nEmployees: number): void {
         formData = new FormData(document.forms[0]);
 
-        let energyMA: number;
         energyMA = Number(formData.get("Energie"));
 
 
@@ -334,8 +354,6 @@ namespace Abschlussarbeit {
         customer.order();
         orderText.innerHTML = customerArray[0].completeOrder.toString();
 
-
-
         // createOrder();
 
     }
@@ -346,6 +364,12 @@ namespace Abschlussarbeit {
         cornBar.draw();
         lettuceBar.draw();
         onionBar.draw();
+        tomatoBar.draw();
+
+        crc2.font = "30px Arial";
+        crc2.fillStyle = "red";
+        crc2.fillText(fillBarArray[0], 110, 130);
+
 
 
         for (let i: number = 0; i < employees.length; i++) {
@@ -364,31 +388,6 @@ namespace Abschlussarbeit {
     }
 
 
-    // function createOrder(): void {
-    // let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
-    // let food: string;
-    // food = allFood[rndmNumFood];
-    // allIngredients.splice(rndmNumIngredient);
-    // // console.log(food, allIngredients);
-    // completeOrder.push(food);
-    // Array.prototype.push.apply(completeOrder, allIngredients);
-
-    // let orderArea: HTMLDivElement;
-    // orderArea = document.createElement("div");
-    // orderArea.id = "orderDiv";
-
-    // let orderText: HTMLParagraphElement = document.createElement("p");
-    // orderText.innerHTML =  completeOrder.toString();
-
-
-    // orderArea.appendChild(orderText);
-
-    // body.appendChild(orderArea);
-
-
-
-
-    // }
 
     function checkOrder(): void {
         // completeOrder.sort();
@@ -499,6 +498,94 @@ namespace Abschlussarbeit {
 
     }
 
+    function phonecall(): void {
+
+        setTimeout(preparePreparebtn, 5000);
+
+    }
+
+    function preparePreparebtn(): void {
+        fillBarArray.splice(0, 1);
+
+        fillBarArray.push("Zubereiten");
+
+        crc2.font = "30px Arial";
+        crc2.fillStyle = "red";
+        crc2.fillText(fillBarArray[0], 110, 130);
+
+        let button: HTMLButtonElement = document.createElement("button");
+        document.getElementById("canvasDiv")?.appendChild(button);
+        button.id = "buttonFuellTheke";
+        button.addEventListener("pointerup", preparation);
+    }
+
+    function preparation(): void {
+
+
+        if (cabbageBar.amountStock < 100) {
+            cabbageBar.amountStock = cabbageBar.amountStock + 25;
+
+        }
+
+        if (onionBar.amountStock < 100) {
+            onionBar.amountStock = onionBar.amountStock + 25;
+        }
+
+        if (lettuceBar.amountStock < 100) {
+            lettuceBar.amountStock = lettuceBar.amountStock + 25;
+        }
+
+        if (cornBar.amountStock < 100) {
+            cornBar.amountStock = cornBar.amountStock + 25;
+        }
+
+        if (tomatoBar.amountStock < 100) {
+            tomatoBar.amountStock = tomatoBar.amountStock + 25;
+        }
+
+
+
+    }
+
+
+
+    function clickIngredientStock(_event: Event): void {
+        let id: HTMLElement = <HTMLElement>_event.target;
+        let idString: string = id.id;
+
+        if (idString == "buttonStock0" && cabbageBar.amountBar < 100) {
+            cabbageBar.amountBar = cabbageBar.amountBar + 25;
+            cabbageBar.amountStock = cabbageBar.amountStock - 25;
+
+        }
+
+        if (idString == "buttonStock1" && lettuceBar.amountBar < 100) {
+            lettuceBar.amountBar = lettuceBar.amountBar + 25;
+            lettuceBar.amountStock = lettuceBar.amountStock - 25;
+
+        }
+
+        if (idString == "buttonStock2" && cornBar.amountBar < 100) {
+            cornBar.amountBar = cornBar.amountBar + 25;
+            cornBar.amountStock = cornBar.amountStock - 25;
+
+        }
+
+        if (idString == "buttonStock3" && tomatoBar.amountBar < 100) {
+            tomatoBar.amountBar = tomatoBar.amountBar + 25;
+            tomatoBar.amountStock = tomatoBar.amountStock - 25;
+
+        }
+
+
+        if (idString == "buttonStock4" && onionBar.amountBar < 100) {
+            onionBar.amountBar = onionBar.amountBar + 25;
+            onionBar.amountStock = onionBar.amountStock - 25;
+
+        }
+
+
+    }
 
 
 
