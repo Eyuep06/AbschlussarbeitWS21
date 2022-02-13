@@ -379,23 +379,23 @@ var Abschlussarbeit;
     function clickIngredientStock(_event) {
         let id = _event.target;
         let idString = id.id;
-        if (idString == "salatVorrat" && cabbageBar.amountBar < 100) {
+        if (idString == "krautVorrat" && cabbageBar.amountBar < 100 && cabbageBar.amountStock >= 25) {
             cabbageBar.amountBar = cabbageBar.amountBar + 25;
             cabbageBar.amountStock = cabbageBar.amountStock - 25;
         }
-        if (idString == "salatVorrat" && lettuceBar.amountBar < 100) {
+        if (idString == "salatVorrat" && lettuceBar.amountBar < 100 && cabbageBar.amountStock >= 25) {
             lettuceBar.amountBar = lettuceBar.amountBar + 25;
             lettuceBar.amountStock = lettuceBar.amountStock - 25;
         }
-        if (idString == "maisVorrat" && cornBar.amountBar < 100) {
+        if (idString == "maisVorrat" && cornBar.amountBar < 100 && cabbageBar.amountStock >= 25) {
             cornBar.amountBar = cornBar.amountBar + 25;
             cornBar.amountStock = cornBar.amountStock - 25;
         }
-        if (idString == "tomateVorrat" && tomatoBar.amountBar < 100) {
+        if (idString == "tomateVorrat" && tomatoBar.amountBar < 100 && cabbageBar.amountStock >= 25) {
             tomatoBar.amountBar = tomatoBar.amountBar + 25;
             tomatoBar.amountStock = tomatoBar.amountStock - 25;
         }
-        if (idString == "zwiebelVorrat" && onionBar.amountBar < 100) {
+        if (idString == "zwiebelVorrat" && onionBar.amountBar < 100 && cabbageBar.amountStock >= 25) {
             onionBar.amountBar = onionBar.amountBar + 25;
             onionBar.amountStock = onionBar.amountStock - 25;
         }
