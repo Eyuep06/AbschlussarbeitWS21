@@ -6,6 +6,7 @@ var Abschlussarbeit;
     let customerArray = [];
     let taskPositions = [new Abschlussarbeit.Vector(50, 250), new Abschlussarbeit.Vector(200, 250), new Abschlussarbeit.Vector(450, 250), new Abschlussarbeit.Vector(550, 350), new Abschlussarbeit.Vector(1000, 650), new Abschlussarbeit.Vector(1000, 650), new Abschlussarbeit.Vector(1000, 650)];
     let energyMA;
+    let verkaufteProdukte = [];
     let fillBarArray = [""];
     let customer;
     let orderText;
@@ -42,6 +43,8 @@ var Abschlussarbeit;
         let orderArea;
         orderArea = document.createElement("div");
         orderArea.id = "orderDiv";
+        let divInhalt;
+        divInhalt = document.getElementById("orderDiv");
         orderArea.appendChild(orderText);
         body.appendChild(orderArea);
         drawRestaurant();
@@ -79,10 +82,6 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.font = "15px Arial";
         Abschlussarbeit.crc2.fillStyle = "red";
         Abschlussarbeit.crc2.fillText("Gesamtzufriedenheit Mitarbeiter:", 310, 30);
-        Abschlussarbeit.crc2.font = "15px Arial";
-        Abschlussarbeit.crc2.fillStyle = "red";
-        Abschlussarbeit.crc2.fillText("Verkaufte Gerichte:", 610, 30);
-        //phone + prepare 
         Abschlussarbeit.crc2.moveTo(0, 200);
         Abschlussarbeit.crc2.lineTo(800, 200);
         Abschlussarbeit.crc2.moveTo(100, 200);
@@ -270,6 +269,9 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.font = "30px Arial";
         Abschlussarbeit.crc2.fillStyle = "red";
         Abschlussarbeit.crc2.fillText(fillBarArray[0], 110, 130);
+        Abschlussarbeit.crc2.font = "15px Arial";
+        Abschlussarbeit.crc2.fillStyle = "red";
+        Abschlussarbeit.crc2.fillText("Verkaufte Gerichte:" + verkaufteProdukte.length, 610, 30);
         for (let i = 0; i < employees.length; i++) {
             employees[i].draw();
             employees[i].updateMood();
@@ -291,17 +293,24 @@ var Abschlussarbeit;
                     // console.log(customerArray[0].completeOrder);
                     // console.log(customerArray[0].completeOrder);
                     // orderText.innerHTML = customerArray[0].completeOrder.toString();
+                    console.log("sauber");
+                    verkaufteProdukte.push("x");
+                    customerArray.splice(0, 1);
+                    orderText.innerHTML = "";
+                    choosenIngredients.length = 0;
+                    customerArray[0].completeOrder.splice(0);
+                    orderText.innerHTML = customerArray[0].completeOrder.toString();
                 }
                 else {
                     console.log("false");
                 }
-            orderText.innerHTML = "";
-            customerArray.splice(0, 1);
-            choosenIngredients.length = 0;
-            customerArray[0].completeOrder.splice(0);
-            orderText.innerHTML = customerArray[0].completeOrder.toString();
-            let divInhalt;
-            divInhalt = document.getElementById("orderDiv");
+            // orderText.innerHTML = "";
+            // customerArray.splice(0, 1);
+            // choosenIngredients.length = 0;
+            // customerArray[0].completeOrder.splice(0);
+            // orderText.innerHTML = customerArray[0].completeOrder.toString();
+            // let divInhalt: HTMLDivElement;
+            // divInhalt = <HTMLDivElement>document.getElementById("orderDiv");
         }
         // else if (completeOrder.length == choosenIngredients.length && completeOrder != choosenIngredients) {
         //     console.log("this aint it");

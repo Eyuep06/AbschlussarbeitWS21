@@ -6,6 +6,8 @@ namespace Abschlussarbeit {
     let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350), new Vector(1000, 650), new Vector(1000, 650), new Vector(1000, 650)];
     let energyMA: number;
 
+    let verkaufteProdukte: string[] = [];
+
 
     let fillBarArray: string[] = [""];
 
@@ -58,6 +60,9 @@ namespace Abschlussarbeit {
         let orderArea: HTMLDivElement;
         orderArea = document.createElement("div");
         orderArea.id = "orderDiv";
+
+        let divInhalt: HTMLDivElement;
+        divInhalt = <HTMLDivElement>document.getElementById("orderDiv");
 
 
 
@@ -112,10 +117,7 @@ namespace Abschlussarbeit {
         crc2.font = "15px Arial";
         crc2.fillStyle = "red";
         crc2.fillText("Gesamtzufriedenheit Mitarbeiter:", 310, 30);
-        crc2.font = "15px Arial";
-        crc2.fillStyle = "red";
-        crc2.fillText("Verkaufte Gerichte:", 610, 30);
-        //phone + prepare 
+ 
         crc2.moveTo(0, 200);
         crc2.lineTo(800, 200);
         crc2.moveTo(100, 200);
@@ -370,6 +372,10 @@ namespace Abschlussarbeit {
         crc2.fillStyle = "red";
         crc2.fillText(fillBarArray[0], 110, 130);
 
+        crc2.font = "15px Arial";
+        crc2.fillStyle = "red";
+        crc2.fillText("Verkaufte Gerichte:" + verkaufteProdukte.length, 610, 30);
+
 
 
         for (let i: number = 0; i < employees.length; i++) {
@@ -404,21 +410,30 @@ namespace Abschlussarbeit {
                     // console.log(customerArray[0].completeOrder);
                     // orderText.innerHTML = customerArray[0].completeOrder.toString();
 
-
+                    console.log("sauber");
+                    verkaufteProdukte.push("x");
+                    customerArray.splice(0, 1);
+                    orderText.innerHTML = "";
+                    choosenIngredients.length = 0;
+                    customerArray[0].completeOrder.splice(0);
+                    
+                    orderText.innerHTML = customerArray[0].completeOrder.toString();
+                    
                 }
 
                 else {
                     console.log("false");
 
                 }
-            orderText.innerHTML = "";
-            customerArray.splice(0, 1);
-            choosenIngredients.length = 0;
-            customerArray[0].completeOrder.splice(0);
-            orderText.innerHTML = customerArray[0].completeOrder.toString();
+            // orderText.innerHTML = "";
+            // customerArray.splice(0, 1);
+            // choosenIngredients.length = 0;
+            // customerArray[0].completeOrder.splice(0);
+            // orderText.innerHTML = customerArray[0].completeOrder.toString();
+            
 
-            let divInhalt: HTMLDivElement;
-            divInhalt = <HTMLDivElement>document.getElementById("orderDiv");
+            // let divInhalt: HTMLDivElement;
+            // divInhalt = <HTMLDivElement>document.getElementById("orderDiv");
 
 
         }
