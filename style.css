@@ -32,7 +32,7 @@ h1 {
     cursor: pointer;
     border: 2px solid #f44336;
     border-radius: 5px;
-    position: relative;
+    position: absolute;
     left: 50%;
     transform: translate(-50%);
     width: 252px;
@@ -44,7 +44,7 @@ h1 {
 }
 
 #button0, #button1, #button2, #button3, #button4 {
-    position: relative;
+    position: absolute;
     height: 100px;
     width: 100px;
     cursor: pointer;
@@ -79,7 +79,7 @@ h1 {
 }
 
 #buttonFuellTheke {
-    position: relative;
+    position: absolute;
     left: -400px;
     bottom: 507px;
     height: 98px;
@@ -90,7 +90,7 @@ h1 {
 }
 
 #buttonStock0, #buttonStock1, #buttonStock2, #buttonStock3, #buttonStock4 {
-    position: relative;
+    position: absolute;
     height: 100px;
     width: 100px;
     cursor: pointer;
@@ -102,7 +102,7 @@ h1 {
 }
 
 #img1, #img2, #img3{
-    position: relative;
+    position: absolute;
     bottom: 101px;
     left: -802px;
     margin-right: 1px;
@@ -110,7 +110,7 @@ h1 {
 }
 
 #img4{
-    position: relative;
+    position: absolute;
     bottom: 401px;
     left: -1100px;
     cursor: pointer;
@@ -119,4 +119,21 @@ h1 {
 #buttonFuellTheke{
     left: -900px;;
     bottom: 503px;
+}
+
+#vorrat{
+    position:absolute;
+    right: 250px;
+    bottom: 320px;
+    height: 150px;
+    width: 200px;
+}
+
+#bedienung{
+    position:absolute;
+    right: 250px;
+    bottom: 70px;
+    height: 150px;
+    width: 200px;
+
 }

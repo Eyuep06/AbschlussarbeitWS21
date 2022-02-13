@@ -43,8 +43,8 @@ var Abschlussarbeit;
         let orderArea;
         orderArea = document.createElement("div");
         orderArea.id = "orderDiv";
-        let divInhalt;
-        divInhalt = document.getElementById("orderDiv");
+        barSelections();
+        stockSelections();
         orderArea.appendChild(orderText);
         body.appendChild(orderArea);
         drawRestaurant();
@@ -117,80 +117,80 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.moveTo(0, 500);
         Abschlussarbeit.crc2.lineTo(800, 500);
         Abschlussarbeit.crc2.stroke();
-        let doenerImg = document.createElement("img");
-        doenerImg.src = "assets/doener.png";
-        document.getElementById("canvasDiv")?.appendChild(doenerImg);
-        doenerImg.id = "img1";
-        let yufkaImg = document.createElement("img");
-        yufkaImg.src = "assets/yufka.png";
-        document.getElementById("canvasDiv")?.appendChild(yufkaImg);
-        yufkaImg.id = "img2";
-        let lahmacunImg = document.createElement("img");
-        lahmacunImg.src = "assets/lahmacun.png";
-        document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
-        lahmacunImg.id = "img3";
-        let phoneImg = document.createElement("img");
-        phoneImg.src = "assets/Telefon.png";
-        document.getElementById("canvasDiv")?.appendChild(phoneImg);
-        phoneImg.id = "img4";
-        lahmacunImg.addEventListener("pointerup", function () { clickFood("Lahmacun"); });
-        doenerImg.addEventListener("pointerup", function () { clickFood("Döner"); });
-        yufkaImg.addEventListener("pointerup", function () { clickFood("Yufka"); });
-        phoneImg.addEventListener("pointerup", phonecall);
-        for (let i = 0; i < 5; i++) {
-            let button = document.createElement("button");
-            document.getElementById("canvasDiv")?.appendChild(button);
-            button.id = "buttonStock" + i;
-        }
-        let cabbageBtn;
-        cabbageBtn = document.getElementById("buttonStock0");
-        let lettuceBtn;
-        lettuceBtn = document.getElementById("buttonStock1");
-        let cornBtn;
-        cornBtn = document.getElementById("buttonStock2");
-        let tomatoBtn;
-        tomatoBtn = document.getElementById("buttonStock3");
-        let onionBtn;
-        onionBtn = document.getElementById("buttonStock4");
-        cabbageBtn.addEventListener("pointerup", clickIngredientStock);
-        lettuceBtn.addEventListener("pointerup", clickIngredientStock);
-        cornBtn.addEventListener("pointerup", clickIngredientStock);
-        tomatoBtn.addEventListener("pointerup", clickIngredientStock);
-        onionBtn.addEventListener("pointerup", clickIngredientStock);
+        // let doenerImg: HTMLImageElement = document.createElement("img");
+        // doenerImg.src = "assets/doener.png";
+        // document.getElementById("canvasDiv")?.appendChild(doenerImg);
+        // doenerImg.id = "img1";
+        // let yufkaImg: HTMLImageElement = document.createElement("img");
+        // yufkaImg.src = "assets/yufka.png";
+        // document.getElementById("canvasDiv")?.appendChild(yufkaImg);
+        // yufkaImg.id = "img2";
+        // let lahmacunImg: HTMLImageElement = document.createElement("img");
+        // lahmacunImg.src = "assets/lahmacun.png";
+        // document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
+        // lahmacunImg.id = "img3";
+        // let phoneImg: HTMLImageElement = document.createElement("img");
+        // phoneImg.src = "assets/Telefon.png";
+        // document.getElementById("canvasDiv")?.appendChild(phoneImg);
+        // phoneImg.id = "img4";
+        // lahmacunImg.addEventListener("pointerup", function (): void { clickFood("Lahmacun"); });
+        // doenerImg.addEventListener("pointerup", function (): void { clickFood("Döner"); });
+        // yufkaImg.addEventListener("pointerup", function (): void { clickFood("Yufka"); });
+        // phoneImg.addEventListener("pointerup", phonecall);
+        // for (let i: number = 0; i < 5; i++) {
+        //     let button: HTMLButtonElement = document.createElement("button");
+        //     document.getElementById("canvasDiv")?.appendChild(button);
+        //     button.id = "buttonStock" + i;
+        // }
+        // let cabbageBtn: HTMLButtonElement;
+        // cabbageBtn = <HTMLButtonElement>document.getElementById("buttonStock0");
+        // let lettuceBtn: HTMLButtonElement;
+        // lettuceBtn = <HTMLButtonElement>document.getElementById("buttonStock1");
+        // let cornBtn: HTMLButtonElement;
+        // cornBtn = <HTMLButtonElement>document.getElementById("buttonStock2");
+        // let tomatoBtn: HTMLButtonElement;
+        // tomatoBtn = <HTMLButtonElement>document.getElementById("buttonStock3");
+        // let onionBtn: HTMLButtonElement;
+        // onionBtn = <HTMLButtonElement>document.getElementById("buttonStock4");
+        // cabbageBtn.addEventListener("pointerup", clickIngredientStock);
+        // lettuceBtn.addEventListener("pointerup", clickIngredientStock);
+        // cornBtn.addEventListener("pointerup", clickIngredientStock);
+        // tomatoBtn.addEventListener("pointerup", clickIngredientStock);
+        // onionBtn.addEventListener("pointerup", clickIngredientStock);
         restaurantImgData = Abschlussarbeit.crc2.getImageData(0, 0, Abschlussarbeit.crc2.canvas.width, Abschlussarbeit.crc2.canvas.height);
     }
     function clickIngredient(_event) {
         let id = _event.target;
         let idString = id.id;
-        if (idString == "button0" && cabbageBar.amountBar > 0) {
+        if (idString == "kraut" && cabbageBar.amountBar > 0) {
             Abschlussarbeit.crc2.fillStyle = "white";
             Abschlussarbeit.crc2.fillRect(301, 401, 98, 98);
             cabbageBar.amountBar = cabbageBar.amountBar - 25;
             cabbageBar.draw();
             choosenIngredients.push("Kraut");
         }
-        if (idString == "button1" && lettuceBar.amountBar > 0) {
+        if (idString == "salat" && lettuceBar.amountBar > 0) {
             Abschlussarbeit.crc2.fillStyle = "white";
             Abschlussarbeit.crc2.fillRect(401, 401, 98, 98);
             lettuceBar.amountBar = lettuceBar.amountBar - 25;
             lettuceBar.draw();
             choosenIngredients.push("Salat");
         }
-        if (idString == "button2" && cornBar.amountBar > 0) {
+        if (idString == "mais" && cornBar.amountBar > 0) {
             Abschlussarbeit.crc2.fillStyle = "white";
             Abschlussarbeit.crc2.fillRect(501, 401, 98, 98);
             cornBar.amountBar = cornBar.amountBar - 25;
             cornBar.draw();
             choosenIngredients.push("Mais");
         }
-        if (idString == "button3" && tomatoBar.amountBar > 0) {
+        if (idString == "tomate" && tomatoBar.amountBar > 0) {
             Abschlussarbeit.crc2.fillStyle = "white";
             Abschlussarbeit.crc2.fillRect(501, 401, 98, 98);
             tomatoBar.amountBar = tomatoBar.amountBar - 25;
             tomatoBar.draw();
             choosenIngredients.push("Tomaten");
         }
-        if (idString == "button4" && onionBar.amountBar > 0) {
+        if (idString == "zwiebel" && onionBar.amountBar > 0) {
             Abschlussarbeit.crc2.fillStyle = "white";
             Abschlussarbeit.crc2.fillRect(701, 401, 98, 98);
             onionBar.amountBar = onionBar.amountBar - 25;
@@ -218,30 +218,28 @@ var Abschlussarbeit;
         onionBar.draw();
         tomatoBar = new Abschlussarbeit.Tomato(capIngredients, capStock);
         tomatoBar.draw();
-        //create Buttons for Ingredients
-        for (let i = 0; i < 5; i++) {
-            let button = document.createElement("button");
-            document.getElementById("canvasDiv")?.appendChild(button);
-            button.id = "button" + i;
-        }
-        let cabbageBtn;
-        cabbageBtn = document.getElementById("button0");
-        let lettuceBtn;
-        lettuceBtn = document.getElementById("button1");
-        let cornBtn;
-        cornBtn = document.getElementById("button2");
-        let tomatoBtn;
-        tomatoBtn = document.getElementById("button3");
-        let onionBtn;
-        onionBtn = document.getElementById("button4");
-        cabbageBtn.addEventListener("pointerup", clickIngredient);
-        lettuceBtn.addEventListener("pointerup", clickIngredient);
-        cornBtn.addEventListener("pointerup", clickIngredient);
-        tomatoBtn.addEventListener("pointerup", clickIngredient);
-        onionBtn.addEventListener("pointerup", clickIngredient);
+        // for (let i: number = 0; i < 5; i++) {
+        //     let button: HTMLButtonElement = document.createElement("button");
+        //     document.getElementById("canvasDiv")?.appendChild(button);
+        //     button.id = "button" + i;
+        // }
+        // let cabbageBtn: HTMLButtonElement;
+        // cabbageBtn = <HTMLButtonElement>document.getElementById("button0");
+        // let lettuceBtn: HTMLButtonElement;
+        // lettuceBtn = <HTMLButtonElement>document.getElementById("button1");
+        // let cornBtn: HTMLButtonElement;
+        // cornBtn = <HTMLButtonElement>document.getElementById("button2");
+        // let tomatoBtn: HTMLButtonElement;
+        // tomatoBtn = <HTMLButtonElement>document.getElementById("button3");
+        // let onionBtn: HTMLButtonElement;
+        // onionBtn = <HTMLButtonElement>document.getElementById("button4");
+        // cabbageBtn.addEventListener("pointerup", clickIngredient);
+        // lettuceBtn.addEventListener("pointerup", clickIngredient);
+        // cornBtn.addEventListener("pointerup", clickIngredient);
+        // tomatoBtn.addEventListener("pointerup", clickIngredient);
+        // onionBtn.addEventListener("pointerup", clickIngredient);
         createEmployees(anzahlMA);
         drawController();
-        // createOrder();
     }
     function createEmployees(nEmployees) {
         formData = new FormData(document.forms[0]);
@@ -257,15 +255,15 @@ var Abschlussarbeit;
         customerArray.push(customer);
         customer.order();
         orderText.innerHTML = customerArray[0].completeOrder.toString();
-        // createOrder();
     }
     function update() {
         Abschlussarbeit.crc2.putImageData(restaurantImgData, 0, 0);
-        cabbageBar.draw();
         cornBar.draw();
         lettuceBar.draw();
         onionBar.draw();
         tomatoBar.draw();
+        cabbageBar.draw();
+        console.log(cabbageBar.amountStock);
         Abschlussarbeit.crc2.font = "30px Arial";
         Abschlussarbeit.crc2.fillStyle = "red";
         Abschlussarbeit.crc2.fillText(fillBarArray[0], 110, 130);
@@ -282,39 +280,20 @@ var Abschlussarbeit;
         }
     }
     function checkOrder() {
-        // completeOrder.sort();
-        // choosenIngredients.sort();
-        // console.log(customerArray[0].completeOrder);
-        // console.log(choosenIngredients);
         if (customerArray[0].completeOrder.length == choosenIngredients.length) {
             for (let i = 0; i < customerArray[0].completeOrder.length; i++)
                 if (customerArray[0].completeOrder[i] == choosenIngredients[i]) {
-                    // // console.log("richtig");
-                    // console.log(customerArray[0].completeOrder);
-                    // console.log(customerArray[0].completeOrder);
-                    // orderText.innerHTML = customerArray[0].completeOrder.toString();
                     console.log("sauber");
                     verkaufteProdukte.push("x");
                     customerArray.splice(0, 1);
                     orderText.innerHTML = "";
                     choosenIngredients.length = 0;
-                    customerArray[0].completeOrder.splice(0);
                     orderText.innerHTML = customerArray[0].completeOrder.toString();
                 }
                 else {
                     console.log("false");
                 }
-            // orderText.innerHTML = "";
-            // customerArray.splice(0, 1);
-            // choosenIngredients.length = 0;
-            // customerArray[0].completeOrder.splice(0);
-            // orderText.innerHTML = customerArray[0].completeOrder.toString();
-            // let divInhalt: HTMLDivElement;
-            // divInhalt = <HTMLDivElement>document.getElementById("orderDiv");
         }
-        // else if (completeOrder.length == choosenIngredients.length && completeOrder != choosenIngredients) {
-        //     console.log("this aint it");
-        // }
     }
     function drawController() {
         let employeesString = [];
@@ -352,14 +331,16 @@ var Abschlussarbeit;
             selelctListTask.appendChild(option);
         }
     }
-    function clickFood(food) {
-        if (food == "Lahmacun") {
+    function clickFood(_event) {
+        let id = _event.target;
+        let idString = id.id;
+        if (idString == "lahmacun") {
             choosenIngredients.push("Lahmacun");
         }
-        if (food == "Yufka") {
+        if (idString == "yufka") {
             choosenIngredients.push("Yufka");
         }
-        if (food == "Döner") {
+        if (idString == "doener") {
             choosenIngredients.push("Döner");
         }
         checkOrder();
@@ -373,10 +354,10 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.font = "30px Arial";
         Abschlussarbeit.crc2.fillStyle = "red";
         Abschlussarbeit.crc2.fillText(fillBarArray[0], 110, 130);
-        let button = document.createElement("button");
-        document.getElementById("canvasDiv")?.appendChild(button);
-        button.id = "buttonFuellTheke";
-        button.addEventListener("pointerup", preparation);
+        // let button: HTMLButtonElement = document.createElement("button");
+        // document.getElementById("canvasDiv")?.appendChild(button);
+        // button.id = "buttonFuellTheke";
+        // button.addEventListener("pointerup", preparation);
     }
     function preparation() {
         if (cabbageBar.amountStock < 100) {
@@ -398,26 +379,75 @@ var Abschlussarbeit;
     function clickIngredientStock(_event) {
         let id = _event.target;
         let idString = id.id;
-        if (idString == "buttonStock0" && cabbageBar.amountBar < 100) {
+        if (idString == "salatVorrat" && cabbageBar.amountBar < 100) {
             cabbageBar.amountBar = cabbageBar.amountBar + 25;
             cabbageBar.amountStock = cabbageBar.amountStock - 25;
         }
-        if (idString == "buttonStock1" && lettuceBar.amountBar < 100) {
+        if (idString == "salatVorrat" && lettuceBar.amountBar < 100) {
             lettuceBar.amountBar = lettuceBar.amountBar + 25;
             lettuceBar.amountStock = lettuceBar.amountStock - 25;
         }
-        if (idString == "buttonStock2" && cornBar.amountBar < 100) {
+        if (idString == "maisVorrat" && cornBar.amountBar < 100) {
             cornBar.amountBar = cornBar.amountBar + 25;
             cornBar.amountStock = cornBar.amountStock - 25;
         }
-        if (idString == "buttonStock3" && tomatoBar.amountBar < 100) {
+        if (idString == "tomateVorrat" && tomatoBar.amountBar < 100) {
             tomatoBar.amountBar = tomatoBar.amountBar + 25;
             tomatoBar.amountStock = tomatoBar.amountStock - 25;
         }
-        if (idString == "buttonStock4" && onionBar.amountBar < 100) {
+        if (idString == "zwiebelVorrat" && onionBar.amountBar < 100) {
             onionBar.amountBar = onionBar.amountBar + 25;
             onionBar.amountStock = onionBar.amountStock - 25;
         }
+    }
+    function barSelections() {
+        let cabbageBtn;
+        cabbageBtn = document.getElementById("kraut");
+        let lettuceBtn;
+        lettuceBtn = document.getElementById("salat");
+        let cornBtn;
+        cornBtn = document.getElementById("mais");
+        let tomatoBtn;
+        tomatoBtn = document.getElementById("tomate");
+        let onionBtn;
+        onionBtn = document.getElementById("zwiebel");
+        let doenerBtn;
+        doenerBtn = document.getElementById("doener");
+        let yufkaBtn;
+        yufkaBtn = document.getElementById("yufka");
+        let lahmacunBtn;
+        lahmacunBtn = document.getElementById("lahmacun");
+        lahmacunBtn.addEventListener("pointerup", clickFood);
+        doenerBtn.addEventListener("pointerup", clickFood);
+        yufkaBtn.addEventListener("pointerup", clickFood);
+        cabbageBtn.addEventListener("pointerup", clickIngredient);
+        lettuceBtn.addEventListener("pointerup", clickIngredient);
+        cornBtn.addEventListener("pointerup", clickIngredient);
+        tomatoBtn.addEventListener("pointerup", clickIngredient);
+        onionBtn.addEventListener("pointerup", clickIngredient);
+    }
+    function stockSelections() {
+        let cabbageBtn;
+        cabbageBtn = document.getElementById("krautVorrat");
+        let lettuceBtn;
+        lettuceBtn = document.getElementById("salatVorrat");
+        let cornBtn;
+        cornBtn = document.getElementById("maisVorrat");
+        let tomatoBtn;
+        tomatoBtn = document.getElementById("tomateVorrat");
+        let onionBtn;
+        onionBtn = document.getElementById("zwiebelVorrat");
+        let phoneBtn;
+        phoneBtn = document.getElementById("telefon");
+        let prepareBtn;
+        prepareBtn = document.getElementById("zubereiten");
+        cabbageBtn.addEventListener("pointerup", clickIngredientStock);
+        lettuceBtn.addEventListener("pointerup", clickIngredientStock);
+        cornBtn.addEventListener("pointerup", clickIngredientStock);
+        tomatoBtn.addEventListener("pointerup", clickIngredientStock);
+        onionBtn.addEventListener("pointerup", clickIngredientStock);
+        phoneBtn.addEventListener("pointerup", phonecall);
+        prepareBtn.addEventListener("pointerup", preparation);
     }
 })(Abschlussarbeit || (Abschlussarbeit = {}));
 //# sourceMappingURL=main.js.map
