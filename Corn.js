@@ -4,10 +4,8 @@ var Abschlussarbeit;
     class Corn extends Abschlussarbeit.Ingredient {
         constructor(_amountBar, _amountStock) {
             super("yellow", new Abschlussarbeit.Vector(500, 400), _amountBar, _amountStock);
-            // this.ownAmount = this.amountBar;
             this.amountBar = _amountBar;
             this.amountStock = _amountStock;
-            // this.ownAmount = _amountStock;
         }
         draw() {
             Abschlussarbeit.crc2.fillStyle = this.color;

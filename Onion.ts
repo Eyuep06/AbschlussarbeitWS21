@@ -3,10 +3,8 @@ namespace Abschlussarbeit {
         
             constructor(_amountBar: number, _amountStock: number) {
                 super("#ECF8E0", new Vector (700, 400), _amountBar, _amountStock);
-                // this.ownAmount = this.amountBar;
                 this.amountBar = _amountBar;
                 this.amountStock = _amountStock;
-                // this.ownAmount = _amountStock;
                 
             }    
 

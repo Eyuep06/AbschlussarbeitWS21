@@ -6,7 +6,6 @@ namespace Abschlussarbeit {
             this.amountBar = _amountBar;
             this.amountStock = _amountStock;
 
-
         }
 
         draw(): void {

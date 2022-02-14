@@ -69,7 +69,6 @@ var Abschlussarbeit;
         let canvas = document.querySelector("canvas");
         canvas.classList.remove("hidden");
         setInterval(createCustomer, intervallCustomer * 1000);
-        // hndController();
     }
     function drawRestaurant() {
         //white bg canvas
@@ -85,15 +84,12 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.lineTo(600, 0);
         Abschlussarbeit.crc2.moveTo(0, 100);
         Abschlussarbeit.crc2.lineTo(800, 100);
-        // crc2.font = "15px Arial";
-        // crc2.fillStyle = "red";
-        // crc2.fillText("Gesamtzufriedenheit Kunden:", 10, 30);
-        // crc2.font = "15px Arial";
-        // crc2.fillStyle = "red";
-        // crc2.fillText("Gesamtzufriedenheit Mitarbeiter:", 310, 30);
         Abschlussarbeit.crc2.font = "13px Arial";
         Abschlussarbeit.crc2.fillStyle = "red";
         Abschlussarbeit.crc2.fillText("Vorratslieferung", 5, 130);
+        Abschlussarbeit.crc2.font = "15px Arial";
+        Abschlussarbeit.crc2.fillStyle = "red";
+        Abschlussarbeit.crc2.fillText("Gesamtzufriedenheit Kunden:", 10, 30);
         Abschlussarbeit.crc2.moveTo(0, 200);
         Abschlussarbeit.crc2.lineTo(800, 200);
         Abschlussarbeit.crc2.moveTo(100, 200);
@@ -190,26 +186,6 @@ var Abschlussarbeit;
         onionBar.draw();
         tomatoBar = new Abschlussarbeit.Tomato(capIngredients, capStock);
         tomatoBar.draw();
-        // for (let i: number = 0; i < 5; i++) {
-        //     let button: HTMLButtonElement = document.createElement("button");
-        //     document.getElementById("canvasDiv")?.appendChild(button);
-        //     button.id = "button" + i;
-        // }
-        // let cabbageBtn: HTMLButtonElement;
-        // cabbageBtn = <HTMLButtonElement>document.getElementById("button0");
-        // let lettuceBtn: HTMLButtonElement;
-        // lettuceBtn = <HTMLButtonElement>document.getElementById("button1");
-        // let cornBtn: HTMLButtonElement;
-        // cornBtn = <HTMLButtonElement>document.getElementById("button2");
-        // let tomatoBtn: HTMLButtonElement;
-        // tomatoBtn = <HTMLButtonElement>document.getElementById("button3");
-        // let onionBtn: HTMLButtonElement;
-        // onionBtn = <HTMLButtonElement>document.getElementById("button4");
-        // cabbageBtn.addEventListener("pointerup", clickIngredient);
-        // lettuceBtn.addEventListener("pointerup", clickIngredient);
-        // cornBtn.addEventListener("pointerup", clickIngredient);
-        // tomatoBtn.addEventListener("pointerup", clickIngredient);
-        // onionBtn.addEventListener("pointerup", clickIngredient);
         createEmployees(anzahlMA);
         drawController();
     }
@@ -258,19 +234,8 @@ var Abschlussarbeit;
             allCustomerMoodNum = Math.round(allCustomerMoodNum / allCustomerMood.length);
             Abschlussarbeit.crc2.font = "15px Arial";
             Abschlussarbeit.crc2.fillStyle = "red";
-            Abschlussarbeit.crc2.fillText("Gesamtzufriedenheit Kunden:" + allCustomerMoodNum, 10, 30);
+            Abschlussarbeit.crc2.fillText("" + allCustomerMoodNum, 210, 30);
         }
-        if (allCustomerMoodNum > 65) {
-            alert("Fired!");
-            document.location.reload();
-        }
-        // for (let i: number = 0; i < allCustomerMood.length; i++) {
-        //     allCustomerMoodNum += allCustomerMood[i];
-        // }
-        // allCustomerMoodNum = Math.round(allCustomerMoodNum / allCustomerMood.length);
-        // crc2.font = "15px Arial";
-        // crc2.fillStyle = "red";
-        // crc2.fillText("Gesamtzufriedenheit Kunden:" + allCustomerMoodNum, 10, 30);
         for (let i = 0; i < energyAllEmployees.length; i++) {
             energyAllEmployeesNum += energyAllEmployees[i];
             if (energyAllEmployees.length > 4) {
@@ -363,10 +328,6 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.font = "30px Arial";
         Abschlussarbeit.crc2.fillStyle = "red";
         Abschlussarbeit.crc2.fillText(fillBarArray[0], 110, 130);
-        // let button: HTMLButtonElement = document.createElement("button");
-        // document.getElementById("canvasDiv")?.appendChild(button);
-        // button.id = "buttonFuellTheke";
-        // button.addEventListener("pointerup", preparation);
     }
     function preparation() {
         if (cabbageBar.amountStock < 100) {
@@ -410,8 +371,6 @@ var Abschlussarbeit;
         }
     }
     function barSelections() {
-        // document.getElementById("vorrat")?.classList.remove("hidden");
-        // document.getElementById("bedienung")?.classList.remove("hidden");
         let cabbageBtn;
         cabbageBtn = document.getElementById("kraut");
         let lettuceBtn;

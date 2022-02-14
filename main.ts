@@ -15,10 +15,7 @@ namespace Abschlussarbeit {
     let allCustomerMood: number[] = [];
     let energyAllEmployeesNum: number = 0;
     let allCustomerMoodNum: number = 0;
-
     let orderArea: HTMLDivElement;
-
-
     let tomatoBar: Tomato;
     let cabbageBar: Cabbage;
     let cornBar: Corn;
@@ -57,7 +54,6 @@ namespace Abschlussarbeit {
         orderArea.id = "orderDiv";
         orderArea.classList.add("hidden");
 
-
         barSelections();
         stockSelections();
         orderArea.appendChild(orderText);
@@ -85,7 +81,6 @@ namespace Abschlussarbeit {
         let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
         canvas.classList.remove("hidden");
         setInterval(createCustomer, intervallCustomer * 1000);
-        // hndController();
     }
 
 
@@ -104,17 +99,15 @@ namespace Abschlussarbeit {
         crc2.lineTo(600, 0);
         crc2.moveTo(0, 100);
         crc2.lineTo(800, 100);
-        // crc2.font = "15px Arial";
-        // crc2.fillStyle = "red";
-        // crc2.fillText("Gesamtzufriedenheit Kunden:", 10, 30);
-        // crc2.font = "15px Arial";
-        // crc2.fillStyle = "red";
-        // crc2.fillText("Gesamtzufriedenheit Mitarbeiter:", 310, 30);
+
 
         crc2.font = "13px Arial";
         crc2.fillStyle = "red";
         crc2.fillText("Vorratslieferung", 5, 130);
 
+        crc2.font = "15px Arial";
+        crc2.fillStyle = "red";
+        crc2.fillText("Gesamtzufriedenheit Kunden:", 10, 30);
 
         crc2.moveTo(0, 200);
         crc2.lineTo(800, 200);
@@ -152,8 +145,6 @@ namespace Abschlussarbeit {
         crc2.lineTo(800, 500);
 
         crc2.stroke();
-
-
 
         restaurantImgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
 
@@ -214,12 +205,10 @@ namespace Abschlussarbeit {
         let capIngredients: number;
         let capStock: number;
 
-
         anzahlMA = Number(formData.get("mitarbeierzahl"));
         capIngredients = Number(formData.get("kapazitätTheke"));
         capStock = Number(formData.get("kapazitätRohmaterial"));
         energyMA = Number(formData.get("Energie"));
-
 
         cabbageBar = new Cabbage(capIngredients, capStock);
         cabbageBar.draw();
@@ -236,36 +225,6 @@ namespace Abschlussarbeit {
         tomatoBar = new Tomato(capIngredients, capStock);
         tomatoBar.draw();
 
-
-        // for (let i: number = 0; i < 5; i++) {
-        //     let button: HTMLButtonElement = document.createElement("button");
-        //     document.getElementById("canvasDiv")?.appendChild(button);
-        //     button.id = "button" + i;
-        // }
-
-        // let cabbageBtn: HTMLButtonElement;
-        // cabbageBtn = <HTMLButtonElement>document.getElementById("button0");
-
-        // let lettuceBtn: HTMLButtonElement;
-        // lettuceBtn = <HTMLButtonElement>document.getElementById("button1");
-
-        // let cornBtn: HTMLButtonElement;
-        // cornBtn = <HTMLButtonElement>document.getElementById("button2");
-
-        // let tomatoBtn: HTMLButtonElement;
-        // tomatoBtn = <HTMLButtonElement>document.getElementById("button3");
-
-        // let onionBtn: HTMLButtonElement;
-        // onionBtn = <HTMLButtonElement>document.getElementById("button4");
-
-        // cabbageBtn.addEventListener("pointerup", clickIngredient);
-        // lettuceBtn.addEventListener("pointerup", clickIngredient);
-        // cornBtn.addEventListener("pointerup", clickIngredient);
-        // tomatoBtn.addEventListener("pointerup", clickIngredient);
-        // onionBtn.addEventListener("pointerup", clickIngredient);
-
-
-
         createEmployees(anzahlMA);
         drawController();
 
@@ -281,7 +240,6 @@ namespace Abschlussarbeit {
             let employee: Employee = new Employee(taskPositions[i], energyMA);
 
             employees.push(employee);
-
 
         }
 
@@ -334,22 +292,9 @@ namespace Abschlussarbeit {
             allCustomerMoodNum = Math.round(allCustomerMoodNum / allCustomerMood.length);
             crc2.font = "15px Arial";
             crc2.fillStyle = "red";
-            crc2.fillText("Gesamtzufriedenheit Kunden:" + allCustomerMoodNum, 10, 30);
+            crc2.fillText("" + allCustomerMoodNum, 210, 30);
         }
 
-        if (allCustomerMoodNum > 65) {
-            alert("Fired!");
-            document.location.reload();
-        }
-
-
-        // for (let i: number = 0; i < allCustomerMood.length; i++) {
-        //     allCustomerMoodNum += allCustomerMood[i];
-        // }
-        // allCustomerMoodNum = Math.round(allCustomerMoodNum / allCustomerMood.length);
-        // crc2.font = "15px Arial";
-        // crc2.fillStyle = "red";
-        // crc2.fillText("Gesamtzufriedenheit Kunden:" + allCustomerMoodNum, 10, 30);
 
 
 
@@ -373,9 +318,7 @@ namespace Abschlussarbeit {
 
         }
 
-
     }
-
 
     function checkOrder(): void {
 
@@ -417,7 +360,6 @@ namespace Abschlussarbeit {
         }
 
 
-
         body.appendChild(controllerArea);
         let selectList: HTMLSelectElement = document.createElement("select");
         let selelctListTask: HTMLSelectElement = document.createElement("select");
@@ -452,11 +394,7 @@ namespace Abschlussarbeit {
             selelctListTask.appendChild(option);
         }
 
-
-
-
     }
-
 
     function clickFood(_event: Event): void {
         let id: HTMLElement = <HTMLElement>_event.target;
@@ -477,6 +415,7 @@ namespace Abschlussarbeit {
         checkOrder();
 
     }
+    
 
     function phonecall(): void {
 
@@ -492,10 +431,7 @@ namespace Abschlussarbeit {
         crc2.fillStyle = "red";
         crc2.fillText(fillBarArray[0], 110, 130);
 
-        // let button: HTMLButtonElement = document.createElement("button");
-        // document.getElementById("canvasDiv")?.appendChild(button);
-        // button.id = "buttonFuellTheke";
-        // button.addEventListener("pointerup", preparation);
+       
     }
 
 
@@ -564,11 +500,7 @@ namespace Abschlussarbeit {
 
     function barSelections(): void {
 
-        // document.getElementById("vorrat")?.classList.remove("hidden");
-        // document.getElementById("bedienung")?.classList.remove("hidden");
-
-
-
+ 
         let cabbageBtn: HTMLButtonElement;
         cabbageBtn = <HTMLButtonElement>document.getElementById("kraut");
 
@@ -683,13 +615,6 @@ namespace Abschlussarbeit {
             employees[6].setTask(auswahlTask.value);
             employees[6].doTask();
         }
-
-
-
-
-
-
-
 
 
     }
