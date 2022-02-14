@@ -8,7 +8,7 @@ namespace Abschlussarbeit {
 
         }
 
-        draw(): void {
+        public draw(): void {
             crc2.fillStyle = this.color;
             crc2.fillRect(500, 400, 100, this.amountBar);
             crc2.fillRect(500, 100, 100, this.amountStock);

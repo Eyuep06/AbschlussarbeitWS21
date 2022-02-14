@@ -1,10 +1,11 @@
 namespace Abschlussarbeit {
 
     export abstract class Ingredient {
-        color: string;
-        position: Vector;
-        amountBar: number;
-        amountStock: number;
+        public amountBar: number;
+        public amountStock: number;
+        protected color: string;
+        protected position: Vector;
+        
 
         constructor(_color: string, _position: Vector, _amountBar: number, _amountStock: number) {
             this.color = _color;

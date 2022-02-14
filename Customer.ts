@@ -2,14 +2,15 @@ namespace Abschlussarbeit {
 
     export class Customer extends Human {
 
-        allFood: string[] = ["Döner", "Yufka", "Lahmacun"];
-        allIngredients: string[] = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
+        public allFood: string[] = ["Döner", "Yufka", "Lahmacun"];
+        public allIngredients: string[] = ["Salat", "Zwiebel", "Mais", "Kraut", "Tomaten"];
 
-        rndmNumFood: number = Math.floor(Math.random() * 3);
-        rndmNumIngredient: number = Math.floor(Math.random() * 5);
+        public completeOrder: string[] = [];
+        public satisfaction: number;
+        
+        private rndmNumFood: number = Math.floor(Math.random() * 3);
+        private rndmNumIngredient: number = Math.floor(Math.random() * 5);
 
-        completeOrder: string[] = [];
-        satisfaction: number;
 
         constructor(_position: Vector, _satisfaction: number) {
             super(_position);
@@ -20,13 +21,13 @@ namespace Abschlussarbeit {
             // super.move(1 / 100);
         }
 
-        draw(): void {
+        public draw(): void {
             super.draw();
         }
 
 
 
-        updateMood(): void {
+        public updateMood(): void {
             this.satisfaction = this.satisfaction - 5;
 
 
@@ -44,7 +45,7 @@ namespace Abschlussarbeit {
             }
         }
 
-        order(): void {
+        public order(): void {
             let food: string;
             food = this.allFood[this.rndmNumFood];
             this.allIngredients.splice(this.rndmNumIngredient);

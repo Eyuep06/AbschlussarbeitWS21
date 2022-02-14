@@ -1,8 +1,8 @@
 namespace Abschlussarbeit {
 
     export class Employee extends Human {
-        task: TASK;
-        energy: number;
+       public task: TASK;
+       public energy: number;
 
         constructor(_position: Vector, _energy: number) {
             super(_position);
@@ -14,7 +14,7 @@ namespace Abschlussarbeit {
 
         }
 
-        setTask(_task: string): void {
+        public setTask(_task: string): void {
             if (_task == "Theke") {
                 this.task = TASK.BAR;
 
@@ -43,7 +43,7 @@ namespace Abschlussarbeit {
         }
 
 
-        doTask(): void {
+        public doTask(): void {
             if (this.task == TASK.BAR) {
                 this.position.x = 550;
                 this.position.y = 350;
@@ -85,7 +85,7 @@ namespace Abschlussarbeit {
             }
         }
 
-        updateMood(): void {
+        public updateMood(): void {
 
             this.energy = this.energy - 1;
 

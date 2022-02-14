@@ -1,15 +1,15 @@
 namespace Abschlussarbeit {
     export class Human {
-        velocity: Vector;
-        position: Vector;
-        mood: MOOD;
+        protected velocity: Vector;
+        public position: Vector;
+        public mood: MOOD;
 
 
         constructor(_position: Vector) {
 
         }
 
-        move(_timeslice: number): void {
+        protected move(_timeslice: number): void {
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
@@ -17,7 +17,7 @@ namespace Abschlussarbeit {
 
 
 
-        draw(): void {
+        public draw(): void {
 
             
 
@@ -98,13 +98,7 @@ namespace Abschlussarbeit {
 
             }
 
-
-
         }
-
-
-
-
 
     }
 
