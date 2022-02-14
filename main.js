@@ -12,6 +12,8 @@ var Abschlussarbeit;
     let orderText;
     let restaurantImgData;
     let choosenIngredients = [];
+    let energyAllEmployees = [];
+    let energyAllEmployeesNum = 0;
     let tomatoBar;
     let cabbageBar;
     let cornBar;
@@ -60,7 +62,7 @@ var Abschlussarbeit;
         body.removeChild(form);
         let canvas = document.querySelector("canvas");
         canvas.classList.remove("hidden");
-        window.setInterval(createCustomer, intervallCustomer * 1000);
+        setInterval(createCustomer, intervallCustomer * 1000);
     }
     function drawRestaurant() {
         //white bg canvas
@@ -79,9 +81,9 @@ var Abschlussarbeit;
         Abschlussarbeit.crc2.font = "15px Arial";
         Abschlussarbeit.crc2.fillStyle = "red";
         Abschlussarbeit.crc2.fillText("Gesamtzufriedenheit Kunden:", 10, 30);
-        Abschlussarbeit.crc2.font = "15px Arial";
-        Abschlussarbeit.crc2.fillStyle = "red";
-        Abschlussarbeit.crc2.fillText("Gesamtzufriedenheit Mitarbeiter:", 310, 30);
+        // crc2.font = "15px Arial";
+        // crc2.fillStyle = "red";
+        // crc2.fillText("Gesamtzufriedenheit Mitarbeiter:", 310, 30);
         Abschlussarbeit.crc2.moveTo(0, 200);
         Abschlussarbeit.crc2.lineTo(800, 200);
         Abschlussarbeit.crc2.moveTo(100, 200);
@@ -263,7 +265,6 @@ var Abschlussarbeit;
         onionBar.draw();
         tomatoBar.draw();
         cabbageBar.draw();
-        console.log(cabbageBar.amountStock);
         Abschlussarbeit.crc2.font = "30px Arial";
         Abschlussarbeit.crc2.fillStyle = "red";
         Abschlussarbeit.crc2.fillText(fillBarArray[0], 110, 130);
@@ -273,10 +274,30 @@ var Abschlussarbeit;
         for (let i = 0; i < employees.length; i++) {
             employees[i].draw();
             employees[i].updateMood();
+            energyAllEmployees.push(employees[i].energy);
+            // console.log("diese" + energyAllEmployees);
         }
         for (let i = 0; i < customerArray.length; i++) {
             customerArray[i].draw();
             customerArray[i].updateMood();
+        }
+        for (let i = 0; i < energyAllEmployees.length; i++) {
+            energyAllEmployeesNum += energyAllEmployees[i];
+            if (energyAllEmployees.length > 4) {
+                energyAllEmployees.splice(0, 4);
+            }
+            // energyAllEmployeesNum = energyAllEmployeesNum / energyAllEmployees.length;
+            // console.log("durchnitt" + energyAllEmployeesNum);
+            // Math.round(energyAllEmployeesNum);
+        }
+        // energyAllEmployeesNum = Math.round(energyAllEmployeesNum / energyAllEmployees.length);
+        // console.log("durchnitt" + energyAllEmployeesNum);
+        energyAllEmployeesNum = Math.round(energyAllEmployeesNum / energyAllEmployees.length);
+        Abschlussarbeit.crc2.font = "15px Arial";
+        Abschlussarbeit.crc2.fillStyle = "red";
+        Abschlussarbeit.crc2.fillText("Gesamtzufriedenheit Mitarbeiter:" + energyAllEmployeesNum, 310, 30);
+        if (energyAllEmployeesNum <= 0) {
+            alert("You lost, the employees nearly died ffs");
         }
     }
     function checkOrder() {

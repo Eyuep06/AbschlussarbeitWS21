@@ -11,6 +11,8 @@ namespace Abschlussarbeit {
     let orderText: HTMLParagraphElement;
     let restaurantImgData: ImageData;
     let choosenIngredients: string[] = [];
+    let energyAllEmployees: number[] = [];
+    let energyAllEmployeesNum: number = 0;
 
     let tomatoBar: Tomato;
     let cabbageBar: Cabbage;
@@ -72,7 +74,7 @@ namespace Abschlussarbeit {
         body.removeChild(form);
         let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
         canvas.classList.remove("hidden");
-        window.setInterval(createCustomer, intervallCustomer * 1000);
+        setInterval(createCustomer, intervallCustomer * 1000);
     }
 
 
@@ -94,9 +96,9 @@ namespace Abschlussarbeit {
         crc2.font = "15px Arial";
         crc2.fillStyle = "red";
         crc2.fillText("Gesamtzufriedenheit Kunden:", 10, 30);
-        crc2.font = "15px Arial";
-        crc2.fillStyle = "red";
-        crc2.fillText("Gesamtzufriedenheit Mitarbeiter:", 310, 30);
+        // crc2.font = "15px Arial";
+        // crc2.fillStyle = "red";
+        // crc2.fillText("Gesamtzufriedenheit Mitarbeiter:", 310, 30);
 
         crc2.moveTo(0, 200);
         crc2.lineTo(800, 200);
@@ -339,10 +341,6 @@ namespace Abschlussarbeit {
 
 
 
-        console.log(cabbageBar.amountStock);
-
-
-
         crc2.font = "30px Arial";
         crc2.fillStyle = "red";
         crc2.fillText(fillBarArray[0], 110, 130);
@@ -354,7 +352,14 @@ namespace Abschlussarbeit {
         for (let i: number = 0; i < employees.length; i++) {
             employees[i].draw();
             employees[i].updateMood();
+            energyAllEmployees.push(employees[i].energy);
+            // console.log("diese" + energyAllEmployees);
+
+
+
         }
+
+
 
 
         for (let i: number = 0; i < customerArray.length; i++) {
@@ -362,6 +367,32 @@ namespace Abschlussarbeit {
             customerArray[i].updateMood();
 
         }
+
+        for (let i: number = 0; i < energyAllEmployees.length; i++) {
+            energyAllEmployeesNum += energyAllEmployees[i];
+            if (energyAllEmployees.length > 4) {
+                energyAllEmployees.splice(0, 4);
+            }
+
+            // energyAllEmployeesNum = energyAllEmployeesNum / energyAllEmployees.length;
+            // console.log("durchnitt" + energyAllEmployeesNum);
+            // Math.round(energyAllEmployeesNum);
+
+
+        }
+        // energyAllEmployeesNum = Math.round(energyAllEmployeesNum / energyAllEmployees.length);
+
+        // console.log("durchnitt" + energyAllEmployeesNum);
+        energyAllEmployeesNum = Math.round(energyAllEmployeesNum / energyAllEmployees.length);
+
+        crc2.font = "15px Arial";
+        crc2.fillStyle = "red";
+        crc2.fillText("Gesamtzufriedenheit Mitarbeiter:" + energyAllEmployeesNum, 310, 30);
+
+        if (energyAllEmployeesNum <= 0) {
+            alert("You lost, the employees nearly died ffs");
+        }
+
 
     }
 
