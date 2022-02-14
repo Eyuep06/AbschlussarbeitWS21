@@ -3,7 +3,7 @@ namespace Abschlussarbeit {
     let formData: FormData;
     let employees: Employee[] = [];
     let customerArray: Customer[] = [];
-    let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350), new Vector(1000, 650), new Vector(1000, 650), new Vector(1000, 650)];
+    let taskPositions: Vector[] = [new Vector(50, 250), new Vector(200, 250), new Vector(450, 250), new Vector(550, 350), new Vector(50, 450), new Vector(150, 450), new Vector(250, 450)];
     let energyMA: number;
     let verkaufteProdukte: string[] = [];
     let fillBarArray: string[] = [""];
@@ -12,7 +12,12 @@ namespace Abschlussarbeit {
     let restaurantImgData: ImageData;
     let choosenIngredients: string[] = [];
     let energyAllEmployees: number[] = [];
+    let allCustomerMood: number[] = [];
     let energyAllEmployeesNum: number = 0;
+    let allCustomerMoodNum: number = 0;
+
+    let orderArea: HTMLDivElement;
+
 
     let tomatoBar: Tomato;
     let cabbageBar: Cabbage;
@@ -48,9 +53,9 @@ namespace Abschlussarbeit {
 
         orderText = document.createElement("p");
 
-        let orderArea: HTMLDivElement;
         orderArea = document.createElement("div");
         orderArea.id = "orderDiv";
+        orderArea.classList.add("hidden");
 
 
         barSelections();
@@ -63,11 +68,16 @@ namespace Abschlussarbeit {
 
 
     function startGame(): void {
+        document.getElementById("vorrat")?.classList.remove("hidden");
+        document.getElementById("bedienung")?.classList.remove("hidden");
         getSettingData();
+
 
         formData = new FormData(document.forms[0]);
         let intervallCustomer: number;
         intervallCustomer = Number(formData.get("kundenIntervall"));
+
+        orderArea.classList.remove("hidden");
 
         let form: HTMLFormElement = <HTMLFormElement>document.querySelector("form");
         let body: HTMLBodyElement = <HTMLBodyElement>document.querySelector("body");
@@ -75,6 +85,7 @@ namespace Abschlussarbeit {
         let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
         canvas.classList.remove("hidden");
         setInterval(createCustomer, intervallCustomer * 1000);
+        // hndController();
     }
 
 
@@ -93,12 +104,17 @@ namespace Abschlussarbeit {
         crc2.lineTo(600, 0);
         crc2.moveTo(0, 100);
         crc2.lineTo(800, 100);
-        crc2.font = "15px Arial";
-        crc2.fillStyle = "red";
-        crc2.fillText("Gesamtzufriedenheit Kunden:", 10, 30);
+        // crc2.font = "15px Arial";
+        // crc2.fillStyle = "red";
+        // crc2.fillText("Gesamtzufriedenheit Kunden:", 10, 30);
         // crc2.font = "15px Arial";
         // crc2.fillStyle = "red";
         // crc2.fillText("Gesamtzufriedenheit Mitarbeiter:", 310, 30);
+
+        crc2.font = "13px Arial";
+        crc2.fillStyle = "red";
+        crc2.fillText("Vorratslieferung", 5, 130);
+
 
         crc2.moveTo(0, 200);
         crc2.lineTo(800, 200);
@@ -137,60 +153,7 @@ namespace Abschlussarbeit {
 
         crc2.stroke();
 
-        // let doenerImg: HTMLImageElement = document.createElement("img");
-        // doenerImg.src = "assets/doener.png";
-        // document.getElementById("canvasDiv")?.appendChild(doenerImg);
-        // doenerImg.id = "img1";
 
-        // let yufkaImg: HTMLImageElement = document.createElement("img");
-        // yufkaImg.src = "assets/yufka.png";
-        // document.getElementById("canvasDiv")?.appendChild(yufkaImg);
-        // yufkaImg.id = "img2";
-
-        // let lahmacunImg: HTMLImageElement = document.createElement("img");
-        // lahmacunImg.src = "assets/lahmacun.png";
-        // document.getElementById("canvasDiv")?.appendChild(lahmacunImg);
-        // lahmacunImg.id = "img3";
-
-        // let phoneImg: HTMLImageElement = document.createElement("img");
-        // phoneImg.src = "assets/Telefon.png";
-        // document.getElementById("canvasDiv")?.appendChild(phoneImg);
-        // phoneImg.id = "img4";
-
-
-
-        // lahmacunImg.addEventListener("pointerup", function (): void { clickFood("Lahmacun"); });
-        // doenerImg.addEventListener("pointerup", function (): void { clickFood("Döner"); });
-        // yufkaImg.addEventListener("pointerup", function (): void { clickFood("Yufka"); });
-        // phoneImg.addEventListener("pointerup", phonecall);
-
-
-        // for (let i: number = 0; i < 5; i++) {
-        //     let button: HTMLButtonElement = document.createElement("button");
-        //     document.getElementById("canvasDiv")?.appendChild(button);
-        //     button.id = "buttonStock" + i;
-        // }
-
-        // let cabbageBtn: HTMLButtonElement;
-        // cabbageBtn = <HTMLButtonElement>document.getElementById("buttonStock0");
-
-        // let lettuceBtn: HTMLButtonElement;
-        // lettuceBtn = <HTMLButtonElement>document.getElementById("buttonStock1");
-
-        // let cornBtn: HTMLButtonElement;
-        // cornBtn = <HTMLButtonElement>document.getElementById("buttonStock2");
-
-        // let tomatoBtn: HTMLButtonElement;
-        // tomatoBtn = <HTMLButtonElement>document.getElementById("buttonStock3");
-
-        // let onionBtn: HTMLButtonElement;
-        // onionBtn = <HTMLButtonElement>document.getElementById("buttonStock4");
-
-        // cabbageBtn.addEventListener("pointerup", clickIngredientStock);
-        // lettuceBtn.addEventListener("pointerup", clickIngredientStock);
-        // cornBtn.addEventListener("pointerup", clickIngredientStock);
-        // tomatoBtn.addEventListener("pointerup", clickIngredientStock);
-        // onionBtn.addEventListener("pointerup", clickIngredientStock);
 
         restaurantImgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
 
@@ -316,7 +279,10 @@ namespace Abschlussarbeit {
 
         for (let i: number = 0; i < nEmployees; i++) {
             let employee: Employee = new Employee(taskPositions[i], energyMA);
+
             employees.push(employee);
+
+
         }
 
     }
@@ -339,8 +305,6 @@ namespace Abschlussarbeit {
         tomatoBar.draw();
         cabbageBar.draw();
 
-
-
         crc2.font = "30px Arial";
         crc2.fillStyle = "red";
         crc2.fillText(fillBarArray[0], 110, 130);
@@ -353,20 +317,41 @@ namespace Abschlussarbeit {
             employees[i].draw();
             employees[i].updateMood();
             energyAllEmployees.push(employees[i].energy);
-            // console.log("diese" + energyAllEmployees);
-
-
 
         }
 
+        if (customerArray.length >= 1) {
 
+            for (let i: number = 0; i < customerArray.length; i++) {
+                customerArray[i].draw();
+                customerArray[i].updateMood();
+                allCustomerMood.push(customer.satisfaction);
+            }
 
-
-        for (let i: number = 0; i < customerArray.length; i++) {
-            customerArray[i].draw();
-            customerArray[i].updateMood();
-
+            for (let i: number = 0; i < allCustomerMood.length; i++) {
+                allCustomerMoodNum += allCustomerMood[i];
+            }
+            allCustomerMoodNum = Math.round(allCustomerMoodNum / allCustomerMood.length);
+            crc2.font = "15px Arial";
+            crc2.fillStyle = "red";
+            crc2.fillText("Gesamtzufriedenheit Kunden:" + allCustomerMoodNum, 10, 30);
         }
+
+        if (allCustomerMoodNum > 65) {
+            alert("Fired!");
+            document.location.reload();
+        }
+
+
+        // for (let i: number = 0; i < allCustomerMood.length; i++) {
+        //     allCustomerMoodNum += allCustomerMood[i];
+        // }
+        // allCustomerMoodNum = Math.round(allCustomerMoodNum / allCustomerMood.length);
+        // crc2.font = "15px Arial";
+        // crc2.fillStyle = "red";
+        // crc2.fillText("Gesamtzufriedenheit Kunden:" + allCustomerMoodNum, 10, 30);
+
+
 
         for (let i: number = 0; i < energyAllEmployees.length; i++) {
             energyAllEmployeesNum += energyAllEmployees[i];
@@ -374,23 +359,18 @@ namespace Abschlussarbeit {
                 energyAllEmployees.splice(0, 4);
             }
 
-            // energyAllEmployeesNum = energyAllEmployeesNum / energyAllEmployees.length;
-            // console.log("durchnitt" + energyAllEmployeesNum);
-            // Math.round(energyAllEmployeesNum);
-
-
         }
-        // energyAllEmployeesNum = Math.round(energyAllEmployeesNum / energyAllEmployees.length);
 
-        // console.log("durchnitt" + energyAllEmployeesNum);
         energyAllEmployeesNum = Math.round(energyAllEmployeesNum / energyAllEmployees.length);
 
         crc2.font = "15px Arial";
         crc2.fillStyle = "red";
         crc2.fillText("Gesamtzufriedenheit Mitarbeiter:" + energyAllEmployeesNum, 310, 30);
 
-        if (energyAllEmployeesNum <= 0) {
-            alert("You lost, the employees nearly died ffs");
+        if (energyAllEmployeesNum <= 25) {
+            alert("You lost, the employees quit");
+            document.location.reload();
+
         }
 
 
@@ -447,6 +427,8 @@ namespace Abschlussarbeit {
         selelctListTask.id = "selectTask";
         controllerOkBtn.innerHTML = "OK";
 
+        controllerOkBtn.addEventListener("pointerup", hndController);
+
         selectList.id = "selectEmployee";
         controllerArea.appendChild(selectList);
         controllerArea.appendChild(selelctListTask);
@@ -455,6 +437,7 @@ namespace Abschlussarbeit {
         //Create and append the options
         for (let i: number = 0; i < employees.length; i++) {
             let option: HTMLOptionElement = document.createElement("option");
+
             option.value = employeesString[i];
             option.text = employeesString[i];
             selectList.appendChild(option);
@@ -463,10 +446,15 @@ namespace Abschlussarbeit {
         //Create and append the options
         for (let i: number = 0; i < tasks.length; i++) {
             let option: HTMLOptionElement = document.createElement("option");
+            option.id = "optionTask";
             option.value = tasks[i];
             option.text = tasks[i];
             selelctListTask.appendChild(option);
         }
+
+
+
+
     }
 
 
@@ -575,6 +563,12 @@ namespace Abschlussarbeit {
     }
 
     function barSelections(): void {
+
+        // document.getElementById("vorrat")?.classList.remove("hidden");
+        // document.getElementById("bedienung")?.classList.remove("hidden");
+
+
+
         let cabbageBtn: HTMLButtonElement;
         cabbageBtn = <HTMLButtonElement>document.getElementById("kraut");
 
@@ -646,6 +640,59 @@ namespace Abschlussarbeit {
 
     }
 
+
+    function hndController(): void {
+        let auswahlMA: HTMLSelectElement;
+        let auswahlTask: HTMLSelectElement;
+
+        auswahlMA = <HTMLSelectElement>document.getElementById("selectEmployee");
+        auswahlTask = <HTMLSelectElement>document.getElementById("selectTask");
+        console.log(auswahlMA.value);
+
+        if (auswahlMA.value == "Mitarbeiter1") {
+            employees[0].setTask(auswahlTask.value);
+            employees[0].doTask();
+        }
+
+        if (auswahlMA.value == "Mitarbeiter2") {
+            employees[1].setTask(auswahlTask.value);
+            employees[1].doTask();
+        }
+
+        if (auswahlMA.value == "Mitarbeiter3") {
+            employees[2].setTask(auswahlTask.value);
+            employees[2].doTask();
+        }
+
+        if (auswahlMA.value == "Mitarbeiter4") {
+            employees[3].setTask(auswahlTask.value);
+            employees[3].doTask();
+        }
+
+        if (auswahlMA.value == "Mitarbeiter5") {
+            employees[4].setTask(auswahlTask.value);
+            employees[4].doTask();
+        }
+
+        if (auswahlMA.value == "Mitarbeiter6") {
+            employees[5].setTask(auswahlTask.value);
+            employees[5].doTask();
+        }
+
+        if (auswahlMA.value == "Mitarbeiter7") {
+            employees[6].setTask(auswahlTask.value);
+            employees[6].doTask();
+        }
+
+
+
+
+
+
+
+
+
+    }
 
 
 }

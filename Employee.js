@@ -9,11 +9,47 @@ var Abschlussarbeit;
             super.draw();
             this.position = (_position);
         }
-        setTask() {
-            // mach ich noch
+        setTask(_task) {
+            if (_task == "Theke") {
+                this.task = Abschlussarbeit.TASK.BAR;
+            }
+            if (_task == "Bestellung") {
+                this.task = Abschlussarbeit.TASK.ORDER;
+            }
+            if (_task == "Zubereitung") {
+                this.task = Abschlussarbeit.TASK.PREPARE;
+            }
+            if (_task == "Füllen") {
+                this.task = Abschlussarbeit.TASK.CHANGE;
+            }
+            if (_task == "Pause") {
+                this.task = Abschlussarbeit.TASK.BREAK;
+            }
         }
         doTask() {
-            //mach ich noch
+            if (this.task == Abschlussarbeit.TASK.BAR) {
+                this.position.x = 550;
+                this.position.y = 350;
+            }
+            if (this.task == Abschlussarbeit.TASK.CHANGE) {
+                this.position.x = 450;
+                this.position.y = 250;
+            }
+            if (this.task == Abschlussarbeit.TASK.ORDER) {
+                this.position.x = 50;
+                this.position.y = 250;
+            }
+            if (this.task == Abschlussarbeit.TASK.PREPARE) {
+                this.position.x = 200;
+                this.position.y = 250;
+            }
+            if (this.task == Abschlussarbeit.TASK.BREAK) {
+                this.position.x = Math.floor(Math.random() * (250 - 50)) + 50;
+                this.position.y = 450;
+                do {
+                    this.energy = this.energy + 5;
+                } while (this.energy <= 100);
+            }
         }
         updateMood() {
             this.energy = this.energy - 1;
